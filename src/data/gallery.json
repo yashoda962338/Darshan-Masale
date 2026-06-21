@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Shop Front",
+    "titleMr": "दुकानाचा दृष्य",
+    "description": "Welcome to Darshan Masale Store",
+    "descriptionMr": "दर्शन मसाले दुकानात आपले स्वागत आहे",
+    "category": "shop",
+    "image": "/assets/images/gallery/front-imagetf.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Shop Interior",
+    "titleMr": "दुकानाचा आतील भाग",
+    "description": "Premium Masala Collection Display",
+    "descriptionMr": "प्रीमियम मसाला संग्रह प्रदर्शन",
+    "category": "shop",
+    "image": "/assets/images/gallery/front-mf.jpg"
+  }
+]

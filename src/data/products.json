@@ -1,0 +1,673 @@
+
+[
+  {
+    "id": 1,
+    "slug": "mirchi-powder",
+    "name": "Mirchi Powder",
+    "nameMr": "मिरची पावडर",
+    "category": "Powder Collection",
+    "categoryMr": "पावडर संग्रह",
+    "description": "Premium quality red chili powder made from handpicked sun-dried chilies. Adds authentic heat and vibrant color to your dishes.",
+    "descriptionMr": "हाताने निवडलेल्या सुकवलेल्या मिरच्यांपासून बनवलेली प्रीमियम दर्जाची लाल मिरची पावडर. तुमच्या पदार्थांना प्रमाणिक तिखटपणा आणि दमदार रंग देते.",
+    "ingredients": ["100% Pure Red Chilies", "Sun Dried", "No Preservatives", "No Artificial Colors"],
+    "cookingUses": "Ideal for curries, gravies, marinades, and tempering. Adds heat and color to all Indian dishes.",
+    "storageInstructions": "Store in an airtight container in a cool, dry place away from direct sunlight.",
+    "weightOptions": [
+      { "label": "200 gm", "price": 45 },
+      { "label": "500 gm", "price": 85 },
+      { "label": "1 KG", "price": 150 }
+    ],
+    "rating": 4.8,
+    "reviews": 156,
+    "image": "/assets/images/products/mirchi-powder.jpg",
+    "images": [
+      "/assets/images/products/mirchi-powder-1.jpg",
+      "/assets/images/products/mirchi-powder-2.jpg",
+      "/assets/images/products/mirchi-powder-3.jpg"
+    ],
+    "tags": ["chili", "powder", "spices", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 2,
+    "slug": "haldi-powder",
+    "name": "Haldi Powder",
+    "nameMr": "हळद पावडर",
+    "category": "Powder Collection",
+    "categoryMr": "पावडर संग्रह",
+    "description": "Premium turmeric powder sourced from the finest farms. Rich in curcumin with natural golden color and earthy aroma.",
+    "descriptionMr": "उत्तम शेतातून मिळवलेली प्रीमियम हळद पावडर. कुरकुमिनने समृद्ध, नैसर्गिक सोनेरी रंग आणि मातीचा सुगंध.",
+    "ingredients": ["100% Pure Turmeric", "Naturally Dried", "No Additives", "Rich in Curcumin"],
+    "cookingUses": "Essential for all Indian curries, rice dishes, lentil soups, and as a natural food colorant.",
+    "storageInstructions": "Keep in a sealed container away from moisture and direct heat. Shelf life: 18 months.",
+    "weightOptions": [
+      { "label": "200 gm", "price": 55 },
+      { "label": "500 gm", "price": 95 },
+      { "label": "1 KG", "price": 170 }
+    ],
+    "rating": 4.9,
+    "reviews": 203,
+    "image": "/assets/images/products/haldi-powder.jpg",
+    "images": [
+      "/assets/images/products/haldi-powder-1.jpg",
+      "/assets/images/products/haldi-powder-2.jpg",
+      "/assets/images/products/haldi-powder-3.jpg"
+    ],
+    "tags": ["turmeric", "powder", "spices", "bestseller", "featured"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 3,
+    "slug": "dhania-powder",
+    "name": "Dhania Powder",
+    "nameMr": "धनिया पावडर",
+    "category": "Powder Collection",
+    "categoryMr": "पावडर संग्रह",
+    "description": "Aromatic coriander powder made from premium quality seeds. Adds a fresh, citrusy flavor to your cooking.",
+    "descriptionMr": "प्रीमियम दर्जाच्या बियांपासून बनवलेली सुगंधी धनिया पावडर. तुमच्या स्वयंपाकाला ताजा, लिंबूवर्गीय चव देते.",
+    "ingredients": ["100% Pure Coriander Seeds", "Sun Dried", "No Preservatives", "Premium Grade"],
+    "cookingUses": "Used in curries, spice blends, marinades, and as a finishing spice for various dishes.",
+    "storageInstructions": "Store in an airtight container in a cool, dry place. Avoid moisture exposure.",
+    "weightOptions": [
+      { "label": "200 gm", "price": 40 },
+      { "label": "500 gm", "price": 75 },
+      { "label": "1 KG", "price": 135 }
+    ],
+    "rating": 4.7,
+    "reviews": 134,
+    "image": "/assets/images/products/dhania-powder.jpg",
+    "images": [
+      "/assets/images/products/dhania-powder-1.jpg",
+      "/assets/images/products/dhania-powder-2.jpg",
+      "/assets/images/products/dhania-powder-3.jpg"
+    ],
+    "tags": ["coriander", "powder", "spices"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+
+  {
+    "id": 4,
+    "slug": "garam-masala",
+    "name": "Garam Masala",
+    "nameMr": "गरम मसाला",
+    "category": "Premium Masala Collection",
+    "categoryMr": "प्रीमियम मसाला संग्रह",
+    "description": "A premium blend of 12 aromatic spices including cardamom, cinnamon, cloves, and black pepper. Adds warmth and depth to any dish.",
+    "descriptionMr": "वेलची, दालचिनी, लवंग आणि काळी मिरी यासह १२ सुगंधी मसाल्यांचे प्रीमियम मिश्रण. कोणत्याही पदार्थाला उबदारपणा आणि खोली देते.",
+    "ingredients": ["Cardamom", "Cinnamon", "Cloves", "Black Pepper", "Nutmeg", "Mace", "Bay Leaf", "Star Anise", "Cumin", "Coriander", "Fennel", "Ginger"],
+    "cookingUses": "Add at the end of cooking for maximum aroma. Perfect for curries, biryanis, and lentil dishes.",
+    "storageInstructions": "Store in an airtight glass container away from light and moisture. Best used within 6 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 85 },
+      { "label": "200 gm", "price": 150 },
+      { "label": "500 gm", "price": 320 }
+    ],
+    "rating": 4.9,
+    "reviews": 278,
+    "image": "/assets/images/products/garam-masala.jpg",
+    "images": [
+      "/assets/images/products/garam-masala-1.jpg",
+      "/assets/images/products/garam-masala-2.jpg",
+      "/assets/images/products/garam-masala-3.jpg"
+    ],
+    "tags": ["garam-masala", "premium", "blend", "bestseller", "featured"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 5,
+    "slug": "kala-masala",
+    "name": "Kala Masala",
+    "nameMr": "काळा मसाला",
+    "category": "Premium Masala Collection",
+    "categoryMr": "प्रीमियम मसाला संग्रह",
+    "description": "A traditional Maharashtrian spice blend with a distinct dark color and robust flavor. Essential for authentic Kolhapuri cuisine.",
+    "descriptionMr": "विशिष्ट गडद रंग आणि तीव्र चव असलेले पारंपारिक महाराष्ट्रीय मसाला मिश्रण. प्रमाणिक कोल्हापुरी पाककृतीसाठी आवश्यक.",
+    "ingredients": ["Coriander", "Cumin", "Black Pepper", "Cloves", "Cinnamon", "Cardamom", "Nutmeg", "Bay Leaf", "Dried Red Chilies"],
+    "cookingUses": "Ideal for meat curries, vegetable dishes, and traditional Maharashtrian recipes like Misal Pav.",
+    "storageInstructions": "Keep in an airtight container. Store in a cool, dark place for maximum freshness.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 95 },
+      { "label": "200 gm", "price": 165 },
+      { "label": "500 gm", "price": 350 }
+    ],
+    "rating": 4.8,
+    "reviews": 189,
+    "image": "/assets/images/products/kala-masala.jpg",
+    "images": [
+      "/assets/images/products/kala-masala-1.jpg",
+      "/assets/images/products/kala-masala-2.jpg",
+      "/assets/images/products/kala-masala-3.jpg"
+    ],
+    "tags": ["kala-masala", "premium", "maharashtrian", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 6,
+    "slug": "kitchen-king",
+    "name": "Kitchen King",
+    "nameMr": "किचन किंग",
+    "category": "Premium Masala Collection",
+    "categoryMr": "प्रीमियम मसाला संग्रह",
+    "description": "An all-purpose premium masala blend that adds royal flavor to every dish. The perfect everyday spice mix.",
+    "descriptionMr": "प्रत्येक पदार्थाला शाही चव देणारे सर्व-उद्देशीय प्रीमियम मसाला मिश्रण. परिपूर्ण दैनंदिन मसाला मिश्रण.",
+    "ingredients": ["Coriander", "Cumin", "Turmeric", "Chili", "Ginger", "Garlic", "Fennel", "Cardamom", "Cinnamon", "Cloves", "Nutmeg"],
+    "cookingUses": "Use in all daily cooking - vegetables, dals, curries, and stir-fries for a complete flavor profile.",
+    "storageInstructions": "Store in a sealed container in a cool, dry place. Shelf life: 12 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 75 },
+      { "label": "200 gm", "price": 135 },
+      { "label": "500 gm", "price": 280 }
+    ],
+    "rating": 4.7,
+    "reviews": 167,
+    "image": "/assets/images/products/kitchen-king.jpg",
+    "images": [
+      "/assets/images/products/kitchen-king-1.jpg",
+      "/assets/images/products/kitchen-king-2.jpg",
+      "/assets/images/products/kitchen-king-3.jpg"
+    ],
+    "tags": ["all-purpose", "premium", "blend", "everyday"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+
+  {
+    "id": 7,
+    "slug": "chicken-masala",
+    "name": "Chicken Masala",
+    "nameMr": "चिकन मसाला",
+    "category": "Special Cooking Collection",
+    "categoryMr": "विशेष कुकिंग संग्रह",
+    "description": "A specially crafted blend for chicken dishes. Perfect for making authentic, flavorful chicken curries.",
+    "descriptionMr": "चिकन पदार्थांसाठी विशेषतः तयार केलेले मिश्रण. प्रमाणिक, चवदार चिकन करी बनवण्यासाठी उत्तम.",
+    "ingredients": ["Coriander", "Cumin", "Turmeric", "Chili", "Ginger", "Garlic", "Garam Masala", "Fenugreek Leaves", "Dried Mango Powder"],
+    "cookingUses": "Use for marinating chicken and in chicken curries. Adds authentic restaurant-style flavor.",
+    "storageInstructions": "Store in an airtight container in a cool, dry place away from moisture.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 65 },
+      { "label": "200 gm", "price": 115 },
+      { "label": "500 gm", "price": 240 }
+    ],
+    "rating": 4.8,
+    "reviews": 156,
+    "image": "/assets/images/products/chicken-masala.jpg",
+    "images": [
+      "/assets/images/products/chicken-masala-1.jpg",
+      "/assets/images/products/chicken-masala-2.jpg",
+      "/assets/images/products/chicken-masala-3.jpg"
+    ],
+    "tags": ["chicken", "cooking", "non-veg", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 8,
+    "slug": "mutton-masala",
+    "name": "Mutton Masala",
+    "nameMr": "मटन मसाला",
+    "category": "Special Cooking Collection",
+    "categoryMr": "विशेष कुकिंग संग्रह",
+    "description": "A robust spice blend specially designed for mutton dishes. Tenderizes meat and adds rich, deep flavors.",
+    "descriptionMr": "मटन पदार्थांसाठी विशेषतः डिझाइन केलेले तीव्र मसाला मिश्रण. मांस मऊ करते आणि समृद्ध, गहन चव देते.",
+    "ingredients": ["Coriander", "Cumin", "Black Pepper", "Cloves", "Cardamom", "Cinnamon", "Bay Leaf", "Dried Ginger", "Nutmeg"],
+    "cookingUses": "Marinate mutton for 2-3 hours before cooking. Essential for authentic mutton curries and biryani.",
+    "storageInstructions": "Store in an airtight container in a cool, dry place. Keep away from direct sunlight.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 75 },
+      { "label": "200 gm", "price": 135 },
+      { "label": "500 gm", "price": 280 }
+    ],
+    "rating": 4.9,
+    "reviews": 189,
+    "image": "/assets/images/products/mutton-masala.jpg",
+    "images": [
+      "/assets/images/products/mutton-masala-1.jpg",
+      "/assets/images/products/mutton-masala-2.jpg",
+      "/assets/images/products/mutton-masala-3.jpg"
+    ],
+    "tags": ["mutton", "cooking", "non-veg", "bestseller", "featured"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+
+  {
+    "id": 9,
+    "slug": "budget-chicken-masala",
+    "name": "Chicken Masala ₹10 Pouch",
+    "nameMr": "चिकन मसाला ₹१० पाउच",
+    "category": "Budget Pouch Collection",
+    "categoryMr": "बजेट पाउच संग्रह",
+    "description": "Affordable chicken masala pouch with authentic flavor. Perfect for home cooking on a budget.",
+    "descriptionMr": "प्रमाणिक चवीसह परवडणारे चिकन मसाला पाउच. बजेटमध्ये घरगुती स्वयंपाकासाठी उत्तम.",
+    "ingredients": ["Coriander", "Cumin", "Turmeric", "Chili", "Ginger", "Garlic", "Garam Masala"],
+    "cookingUses": "Quick and easy chicken curry in minutes. Great for everyday cooking.",
+    "storageInstructions": "Keep in a cool, dry place. Use within 30 days of opening.",
+    "weightOptions": [
+      { "label": "25 gm", "price": 10 }
+    ],
+    "rating": 4.5,
+    "reviews": 89,
+    "image": "/assets/images/products/budget-chicken-masala.jpg",
+    "images": [
+      "/assets/images/products/budget-chicken-masala-1.jpg"
+    ],
+    "tags": ["budget", "chicken", "pouch", "affordable"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+  {
+    "id": 10,
+    "slug": "budget-mutton-masala",
+    "name": "Mutton Masala ₹10 Pouch",
+    "nameMr": "मटन मसाला ₹१० पाउच",
+    "category": "Budget Pouch Collection",
+    "categoryMr": "बजेट पाउच संग्रह",
+    "description": "Budget-friendly mutton masala pouch. Makes delicious mutton curry without breaking the bank.",
+    "descriptionMr": "बजेट-अनुकूल मटन मसाला पाउच. जास्त खर्च न करता चवदार मटन करी बनवते.",
+    "ingredients": ["Coriander", "Cumin", "Black Pepper", "Cloves", "Cardamom", "Cinnamon"],
+    "cookingUses": "Perfect for quick mutton curries. Use with your preferred cooking method.",
+    "storageInstructions": "Store in a dry place. Use within 30 days of opening the pouch.",
+    "weightOptions": [
+      { "label": "25 gm", "price": 10 }
+    ],
+    "rating": 4.4,
+    "reviews": 76,
+    "image": "/assets/images/products/budget-mutton-masala.jpg",
+    "images": [
+      "/assets/images/products/budget-mutton-masala-1.jpg"
+    ],
+    "tags": ["budget", "mutton", "pouch", "affordable"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+  {
+    "id": 11,
+    "slug": "budget-mirchi-powder",
+    "name": "Mirchi Powder ₹10 Pouch",
+    "nameMr": "मिरची पावडर ₹१० पाउच",
+    "category": "Budget Pouch Collection",
+    "categoryMr": "बजेट पाउच संग्रह",
+    "description": "Quality red chili powder in an affordable pouch. Pure heat at a budget price.",
+    "descriptionMr": "परवडणाऱ्या पाउचमध्ये दर्जेदार लाल मिरची पावडर. बजेट किंमतीत शुद्ध तिखटपणा.",
+    "ingredients": ["100% Pure Red Chili Powder"],
+    "cookingUses": "Ideal for daily cooking, tempering, and adding heat to any dish.",
+    "storageInstructions": "Keep in a dry, cool place. Consume within 30 days of opening.",
+    "weightOptions": [
+      { "label": "50 gm", "price": 10 }
+    ],
+    "rating": 4.6,
+    "reviews": 95,
+    "image": "/assets/images/products/budget-mirchi-powder.jpg",
+    "images": [
+      "/assets/images/products/budget-mirchi-powder-1.jpg"
+    ],
+    "tags": ["budget", "chili", "pouch", "affordable"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+  {
+    "id": 12,
+    "slug": "budget-haldi-powder",
+    "name": "Haldi Powder ₹10 Pouch",
+    "nameMr": "हळद पावडर ₹१० पाउच",
+    "category": "Budget Pouch Collection",
+    "categoryMr": "बजेट पाउच संग्रह",
+    "description": "Pure turmeric powder at an unbeatable price. Perfect for everyday cooking needs.",
+    "descriptionMr": "अतुलनीय किंमतीत शुद्ध हळद पावडर. दैनंदिन स्वयंपाकाच्या गरजांसाठी उत्तम.",
+    "ingredients": ["100% Pure Turmeric Powder"],
+    "cookingUses": "Everyday cooking, medicinal use, and as a natural colorant.",
+    "storageInstructions": "Store in a cool, dry place. Use within 30 days after opening.",
+    "weightOptions": [
+      { "label": "50 gm", "price": 10 }
+    ],
+    "rating": 4.7,
+    "reviews": 112,
+    "image": "/assets/images/products/budget-haldi-powder.jpg",
+    "images": [
+      "/assets/images/products/budget-haldi-powder-1.jpg"
+    ],
+    "tags": ["budget", "turmeric", "pouch", "affordable"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+  {
+    "id": 13,
+    "slug": "budget-dhania-powder",
+    "name": "Dhania Powder ₹10 Pouch",
+    "nameMr": "धनिया पावडर ₹१० पाउच",
+    "category": "Budget Pouch Collection",
+    "categoryMr": "बजेट पाउच संग्रह",
+    "description": "Premium coriander powder in a budget-friendly pouch. Add fresh flavor without the premium price.",
+    "descriptionMr": "बजेट-अनुकूल पाउचमध्ये प्रीमियम धनिया पावडर. प्रीमियम किंमतीशिवाय ताजी चव मिळवा.",
+    "ingredients": ["100% Pure Coriander Powder"],
+    "cookingUses": "Essential for daily curries, spice blends, and as a finishing spice.",
+    "storageInstructions": "Keep in a dry, cool place. Use within 30 days of opening.",
+    "weightOptions": [
+      { "label": "50 gm", "price": 10 }
+    ],
+    "rating": 4.5,
+    "reviews": 78,
+    "image": "/assets/images/products/budget-dhania-powder.jpg",
+    "images": [
+      "/assets/images/products/budget-dhania-powder-1.jpg"
+    ],
+    "tags": ["budget", "coriander", "pouch", "affordable"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+
+ 
+  {
+    "id": 14,
+    "slug": "garlic-mix-chutney",
+    "name": "Garlic Mix Chutney",
+    "nameMr": "लसूण मिक्स चटणी",
+    "category": "Special Products",
+    "categoryMr": "विशेष उत्पादने",
+    "description": "A flavorful garlic-based chutney with a perfect balance of spice and tanginess. Made with premium ingredients.",
+    "descriptionMr": "मसाला आणि आंबटपणाचा उत्तम समतोल असलेली चवदार लसूण-आधारित चटणी. प्रीमियम घटकांपासून बनवलेली.",
+    "ingredients": ["Garlic", "Red Chilies", "Tamarind", "Salt", "Cumin", "Mustard Seeds"],
+    "cookingUses": "Serve as a condiment with meals, use as a sandwich spread, or mix with rice for instant flavor.",
+    "storageInstructions": "Refrigerate after opening. Best consumed within 15 days of opening.",
+    "weightOptions": [
+      { "label": "200 gm", "price": 85 },
+      { "label": "500 gm", "price": 150 }
+    ],
+    "rating": 4.8,
+    "reviews": 134,
+    "image": "/assets/images/products/garlic-mix-chutney.jpg",
+    "images": [
+      "/assets/images/products/garlic-mix-chutney-1.jpg",
+      "/assets/images/products/garlic-mix-chutney-2.jpg"
+    ],
+    "tags": ["chutney", "garlic", "special", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+
+ 
+  {
+    "id": 15,
+    "slug": "achar-masala",
+    "name": "Achar Masala",
+    "nameMr": "आचार मसाला",
+    "category": "Traditional Masala Collection",
+    "categoryMr": "पारंपारिक मसाला संग्रह",
+    "description": "A special blend of spices for making traditional Indian pickles. Preserves and flavors your pickles perfectly.",
+    "descriptionMr": "पारंपारिक भारतीय आचार बनवण्यासाठी मसाल्यांचे विशेष मिश्रण. तुमचे आचार उत्तम प्रकारे जतन आणि चवदार बनवते.",
+    "ingredients": ["Fenugreek", "Mustard Seeds", "Asafoetida", "Turmeric", "Red Chili", "Cumin"],
+    "cookingUses": "Essential for making mango pickle, lemon pickle, and mixed vegetable pickles.",
+    "storageInstructions": "Store in an airtight container in a cool, dark place. Shelf life: 12 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 55 },
+      { "label": "200 gm", "price": 95 },
+      { "label": "500 gm", "price": 200 }
+    ],
+    "rating": 4.6,
+    "reviews": 98,
+    "image": "/assets/images/products/achar-masala.jpg",
+    "images": [
+      "/assets/images/products/achar-masala-1.jpg",
+      "/assets/images/products/achar-masala-2.jpg"
+    ],
+    "tags": ["achar", "pickle", "traditional", "special"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  },
+  {
+    "id": 16,
+    "slug": "special-khichadi-masala",
+    "name": "Special Khichadi Masala",
+    "nameMr": "विशेष खिचडी मसाला",
+    "category": "Traditional Masala Collection",
+    "categoryMr": "पारंपारिक मसाला संग्रह",
+    "description": "Aromatic spice blend specially created for khichadi. Adds warmth and depth to this comfort food.",
+    "descriptionMr": "खिचडीसाठी विशेषतः तयार केलेले सुगंधी मसाला मिश्रण. या आरामदायी पदार्थाला उबदारपणा आणि खोली देते.",
+    "ingredients": ["Cumin", "Black Pepper", "Cloves", "Cinnamon", "Cardamom", "Bay Leaf"],
+    "cookingUses": "Perfect for moong dal khichadi, vegetable khichadi, and other one-pot meals.",
+    "storageInstructions": "Keep in a sealed container in a cool, dry place. Use within 6 months for best flavor.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 45 },
+      { "label": "200 gm", "price": 85 },
+      { "label": "500 gm", "price": 180 }
+    ],
+    "rating": 4.7,
+    "reviews": 145,
+    "image": "/assets/images/products/khichadi-masala.jpg",
+    "images": [
+      "/assets/images/products/khichadi-masala-1.jpg",
+      "/assets/images/products/khichadi-masala-2.jpg"
+    ],
+    "tags": ["khichadi", "traditional", "comfort-food", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 17,
+    "slug": "tea-masala",
+    "name": "Tea Masala",
+    "nameMr": "चहा मसाला",
+    "category": "Traditional Masala Collection",
+    "categoryMr": "पारंपारिक मसाला संग्रह",
+    "description": "Aromatic spice blend for authentic masala chai. Adds warmth, flavor, and a touch of luxury to your tea.",
+    "descriptionMr": "प्रमाणिक मसाला चहासाठी सुगंधी मसाला मिश्रण. तुमच्या चहाला उबदारपणा, चव आणि थोडी शान देते.",
+    "ingredients": ["Cardamom", "Cinnamon", "Cloves", "Ginger", "Black Pepper", "Nutmeg"],
+    "cookingUses": "Add to your regular tea while boiling for authentic masala chai flavor.",
+    "storageInstructions": "Store in an airtight container away from moisture. Best used within 6 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 65 },
+      { "label": "200 gm", "price": 115 },
+      { "label": "500 gm", "price": 240 }
+    ],
+    "rating": 4.9,
+    "reviews": 234,
+    "image": "/assets/images/products/tea-masala.jpg",
+    "images": [
+      "/assets/images/products/tea-masala-1.jpg",
+      "/assets/images/products/tea-masala-2.jpg",
+      "/assets/images/products/tea-masala-3.jpg"
+    ],
+    "tags": ["tea", "chai", "masala-chai", "bestseller", "featured"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 18,
+    "slug": "sambhar-masala",
+    "name": "Sambhar Masala",
+    "nameMr": "सांबार मसाला",
+    "category": "Traditional Masala Collection",
+    "categoryMr": "पारंपारिक मसाला संग्रह",
+    "description": "Traditional South Indian sambhar powder made with roasted spices and lentils. Authentic, aromatic, and flavorful.",
+    "descriptionMr": "भाजलेले मसाले आणि डाळींपासून बनवलेली पारंपारिक दक्षिण भारतीय सांबार पावडर. प्रमाणिक, सुगंधी आणि चवदार.",
+    "ingredients": ["Coriander", "Cumin", "Toor Dal", "Bengal Gram", "Red Chili", "Fenugreek", "Asafoetida"],
+    "cookingUses": "Essential for authentic sambhar, vegetable stews, and lentil-based dishes.",
+    "storageInstructions": "Keep in an airtight container in a cool, dark place. Shelf life: 12 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 55 },
+      { "label": "200 gm", "price": 95 },
+      { "label": "500 gm", "price": 200 }
+    ],
+    "rating": 4.8,
+    "reviews": 198,
+    "image": "/assets/images/products/sambhar-masala.jpg",
+    "images": [
+      "/assets/images/products/sambhar-masala-1.jpg",
+      "/assets/images/products/sambhar-masala-2.jpg"
+    ],
+    "tags": ["sambhar", "south-indian", "traditional", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 19,
+    "slug": "pav-bhaji-masala",
+    "name": "Pav Bhaji Masala",
+    "nameMr": "पाव भाजी मसाला",
+    "category": "Traditional Masala Collection",
+    "categoryMr": "पारंपारिक मसाला संग्रह",
+    "description": "Authentic Mumbai street style pav bhaji masala. Turns ordinary vegetables into a delicious, spicy bhaji.",
+    "descriptionMr": "प्रमाणिक मुंबई स्ट्रीट स्टाईल पाव भाजी मसाला. सामान्य भाज्यांना चवदार, मसालेदार भाजीमध्ये बदलते.",
+    "ingredients": ["Red Chili", "Cumin", "Coriander", "Amchur", "Ginger", "Garlic", "Fennel", "Cinnamon", "Cloves"],
+    "cookingUses": "Essential for making pav bhaji. Also great for other vegetable dishes and sandwich spreads.",
+    "storageInstructions": "Store in an airtight container in a cool, dry place. Use within 6 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 65 },
+      { "label": "200 gm", "price": 115 },
+      { "label": "500 gm", "price": 240 }
+    ],
+    "rating": 4.9,
+    "reviews": 267,
+    "image": "/assets/images/products/pav-bhaji-masala.jpg",
+    "images": [
+      "/assets/images/products/pav-bhaji-masala-1.jpg",
+      "/assets/images/products/pav-bhaji-masala-2.jpg",
+      "/assets/images/products/pav-bhaji-masala-3.jpg"
+    ],
+    "tags": ["pav-bhaji", "street-food", "mumbai", "bestseller", "featured"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+
+  {
+    "id": 20,
+    "slug": "kolhapuri-mutton-masala",
+    "name": "Kolhapuri Mutton Masala",
+    "nameMr": "कोल्हापुरी मटन मसाला",
+    "category": "Kolhapuri Collection",
+    "categoryMr": "कोल्हापुरी संग्रह",
+    "description": "Authentic Kolhapuri spice blend for mutton. Known for its intense heat and rich, complex flavors.",
+    "descriptionMr": "मटनसाठी प्रमाणिक कोल्हापुरी मसाला मिश्रण. त्याच्या तीव्र तिखटपणा आणि समृद्ध, जटिल चवीसाठी ओळखले जाते.",
+    "ingredients": ["Red Chili", "Coriander", "Cumin", "Garlic", "Ginger", "Cloves", "Cinnamon", "Cardamom", "Black Pepper"],
+    "cookingUses": "Use for authentic Kolhapuri mutton curry. Marinate meat for best results.",
+    "storageInstructions": "Keep in an airtight container in a cool, dark place. Shelf life: 12 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 85 },
+      { "label": "200 gm", "price": 150 },
+      { "label": "500 gm", "price": 320 }
+    ],
+    "rating": 4.9,
+    "reviews": 212,
+    "image": "/assets/images/products/kolhapuri-mutton.jpg",
+    "images": [
+      "/assets/images/products/kolhapuri-mutton-1.jpg",
+      "/assets/images/products/kolhapuri-mutton-2.jpg",
+      "/assets/images/products/kolhapuri-mutton-3.jpg"
+    ],
+    "tags": ["kolhapuri", "mutton", "spicy", "bestseller", "featured"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 21,
+    "slug": "kolhapuri-biryani-masala",
+    "name": "Kolhapuri Biryani Masala",
+    "nameMr": "कोल्हापुरी बिर्याणी मसाला",
+    "category": "Kolhapuri Collection",
+    "categoryMr": "कोल्हापुरी संग्रह",
+    "description": "Special biryani masala with a Kolhapuri twist. Aromatic, spicy, and perfect for layered rice dishes.",
+    "descriptionMr": "कोल्हापुरी ट्विस्टसह विशेष बिर्याणी मसाला. सुगंधी, मसालेदार आणि थरांच्या तांदळाच्या पदार्थांसाठी उत्तम.",
+    "ingredients": ["Coriander", "Cumin", "Black Pepper", "Cloves", "Cardamom", "Cinnamon", "Mace", "Nutmeg", "Bay Leaf", "Fennel"],
+    "cookingUses": "Perfect for chicken biryani, mutton biryani, and vegetable biryani.",
+    "storageInstructions": "Store in an airtight container away from light and moisture. Use within 6 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 75 },
+      { "label": "200 gm", "price": 135 },
+      { "label": "500 gm", "price": 280 }
+    ],
+    "rating": 4.8,
+    "reviews": 178,
+    "image": "/assets/images/products/kolhapuri-biryani.jpg",
+    "images": [
+      "/assets/images/products/kolhapuri-biryani-1.jpg",
+      "/assets/images/products/kolhapuri-biryani-2.jpg"
+    ],
+    "tags": ["kolhapuri", "biryani", "premium", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 22,
+    "slug": "kolhapuri-chicken-masala",
+    "name": "Kolhapuri Chicken Masala",
+    "nameMr": "कोल्हापुरी चिकन मसाला",
+    "category": "Kolhapuri Collection",
+    "categoryMr": "कोल्हापुरी संग्रह",
+    "description": "Spicy Kolhapuri chicken masala that brings the heat of Kolhapur to your kitchen. Authentic and bold.",
+    "descriptionMr": "मसालेदार कोल्हापुरी चिकन मसाला जो कोल्हापूरचा तिखटपणा तुमच्या स्वयंपाकघरात आणतो. प्रमाणिक आणि बोल्ड.",
+    "ingredients": ["Red Chili", "Coriander", "Cumin", "Garlic", "Ginger", "Cloves", "Cinnamon", "Black Pepper"],
+    "cookingUses": "Essential for authentic Kolhapuri chicken curry. Best used with bone-in chicken.",
+    "storageInstructions": "Store in an airtight container in a cool, dry place. Shelf life: 12 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 75 },
+      { "label": "200 gm", "price": 135 },
+      { "label": "500 gm", "price": 280 }
+    ],
+    "rating": 4.7,
+    "reviews": 156,
+    "image": "/assets/images/products/kolhapuri-chicken.jpg",
+    "images": [
+      "/assets/images/products/kolhapuri-chicken-1.jpg",
+      "/assets/images/products/kolhapuri-chicken-2.jpg"
+    ],
+    "tags": ["kolhapuri", "chicken", "spicy", "bestseller"],
+    "inStock": true,
+    "featured": true,
+    "bestseller": true
+  },
+  {
+    "id": 23,
+    "slug": "kolhapuri-shev-bhaji-masala",
+    "name": "Kolhapuri Shev Bhaji Masala",
+    "nameMr": "कोल्हापुरी शेव भाजी मसाला",
+    "category": "Kolhapuri Collection",
+    "categoryMr": "कोल्हापुरी संग्रह",
+    "description": "Special masala for the famous Kolhapuri Shev Bhaji. A unique street food experience at home.",
+    "descriptionMr": "प्रसिद्ध कोल्हापुरी शेव भाजीसाठी विशेष मसाला. घरी एक अनोखा स्ट्रीट फूड अनुभव.",
+    "ingredients": ["Red Chili", "Cumin", "Coriander", "Garlic", "Ginger", "Amchur", "Fennel"],
+    "cookingUses": "Perfect for making authentic Shev Bhaji. Also great for spicy potato and pea dishes.",
+    "storageInstructions": "Keep in a sealed container in a cool, dry place. Use within 6 months.",
+    "weightOptions": [
+      { "label": "100 gm", "price": 55 },
+      { "label": "200 gm", "price": 95 },
+      { "label": "500 gm", "price": 200 }
+    ],
+    "rating": 4.6,
+    "reviews": 123,
+    "image": "/assets/images/products/kolhapuri-shev-bhaji.jpg",
+    "images": [
+      "/assets/images/products/kolhapuri-shev-bhaji-1.jpg",
+      "/assets/images/products/kolhapuri-shev-bhaji-2.jpg"
+    ],
+    "tags": ["kolhapuri", "shev-bhaji", "street-food", "special"],
+    "inStock": true,
+    "featured": false,
+    "bestseller": false
+  }
+]

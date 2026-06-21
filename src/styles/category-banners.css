@@ -1,0 +1,93 @@
+/* src/styles/category-banners.css - Category Banners Premium Styling */
+
+.category-banner-card {
+  @apply relative overflow-hidden rounded-[28px] shadow-soft hover:shadow-elevated transition-all duration-500;
+  height: 280px;
+}
+
+.category-banner-image {
+  @apply w-full h-full bg-cover bg-center bg-no-repeat transition-transform duration-700;
+}
+
+.category-banner-image:hover {
+  transform: scale(1.08);
+}
+
+.category-banner-overlay {
+  @apply absolute inset-0 transition-opacity duration-500;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.45) 40%,
+    rgba(0, 0, 0, 0.15) 70%,
+    transparent 100%
+  );
+}
+
+.category-banner-overlay:hover {
+  opacity: 0.95;
+}
+
+.category-banner-content {
+  @apply absolute bottom-0 left-0 right-0 p-6 z-10;
+}
+
+.category-banner-title {
+  @apply font-heading text-2xl md:text-3xl font-bold text-white leading-tight drop-shadow-lg;
+}
+
+.category-banner-subtitle {
+  @apply text-sm text-white/80 mt-0.5 font-light tracking-wide drop-shadow-md;
+}
+
+.category-banner-explore {
+  @apply inline-flex items-center gap-2 text-sm font-button font-medium tracking-wider text-secondary-gold transition-all duration-300;
+}
+
+.category-banner-explore:hover {
+  gap: 12px;
+}
+
+.category-banner-explore svg {
+  @apply transition-transform duration-300;
+}
+
+.category-banner-explore:hover svg {
+  transform: translateX(4px);
+}
+
+/* Badge Styles */
+.category-badge-premium {
+  @apply bg-gradient-to-r from-secondary-gold to-secondary-gold-dark text-text-dark px-3 py-1.5 rounded-full shadow-lg;
+}
+
+.category-badge-budget {
+  @apply bg-green-500 text-white px-3 py-1.5 rounded-full shadow-lg;
+}
+
+.category-badge-specialty {
+  @apply bg-purple-500 text-white px-3 py-1.5 rounded-full shadow-lg;
+}
+
+.category-badge-count {
+  @apply bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-lg;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .category-banner-card {
+    height: 220px;
+  }
+  
+  .category-banner-title {
+    @apply text-xl;
+  }
+  
+  .category-banner-subtitle {
+    @apply text-xs;
+  }
+  
+  .category-banner-content {
+    @apply p-4;
+  }
+}

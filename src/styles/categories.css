@@ -1,0 +1,137 @@
+/* src/styles/categories.css - Categories Page Premium Styling */
+
+.categories-page {
+  @apply bg-background-cream min-h-screen;
+}
+
+.collection-banner {
+  @apply relative overflow-hidden rounded-[24px] shadow-soft hover:shadow-elevated transition-all duration-500 cursor-pointer;
+}
+
+.collection-banner-image {
+  @apply w-full h-[280px] md:h-[300px] lg:h-[320px] bg-cover bg-no-repeat transition-transform duration-700;
+}
+
+.collection-banner-image:hover {
+  transform: scale(1.05);
+}
+
+.collection-banner-overlay {
+  @apply absolute inset-0 transition-opacity duration-500;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.40) 50%,
+    rgba(0, 0, 0, 0.15) 75%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+}
+
+.collection-banner-overlay:hover {
+  opacity: 1;
+}
+
+.collection-banner-content {
+  @apply absolute inset-0 flex items-center z-10;
+}
+
+.collection-banner-text {
+  @apply w-full md:w-2/3 lg:w-1/2 p-6 md:p-8 lg:p-10;
+}
+
+.collection-number {
+  @apply text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white/10 absolute -top-2 -left-2;
+}
+
+.collection-name {
+  @apply font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight drop-shadow-lg relative z-10 transition-transform duration-300;
+}
+
+.collection-name:hover {
+  transform: translateY(-6px);
+}
+
+.collection-subtitle {
+  @apply text-sm md:text-base text-white/80 mt-2 font-light tracking-wide drop-shadow-md relative z-10 transition-transform duration-300;
+}
+
+.collection-subtitle:hover {
+  transform: translateY(-3px);
+}
+
+.collection-link {
+  @apply inline-flex items-center gap-3 text-sm md:text-base font-button font-medium tracking-wider text-secondary-gold transition-all duration-300;
+}
+
+.collection-link:hover {
+  gap: 16px;
+}
+
+.collection-link svg {
+  @apply transition-transform duration-300;
+}
+
+.collection-link:hover svg {
+  transform: translateX(4px);
+}
+
+.collection-corner-accent {
+  @apply absolute bottom-0 right-0 w-48 h-48 pointer-events-none opacity-10;
+}
+
+.collection-corner-accent div {
+  @apply absolute bottom-0 right-0 w-full h-full bg-gradient-to-tl from-secondary-gold to-transparent rounded-br-[24px];
+}
+
+.collection-glass-overlay {
+  @apply absolute inset-0 transition-all duration-500;
+}
+
+.collection-glass-overlay:hover {
+  @apply bg-gradient-to-tr from-white/5 via-white/0 to-white/10;
+}
+
+.collection-border-glow {
+  @apply absolute inset-0 rounded-[24px] pointer-events-none;
+}
+
+.collection-border-glow div {
+  @apply absolute inset-0 rounded-[24px] border-2 border-secondary-gold/30;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .collection-banner-image {
+    height: 220px;
+  }
+  
+  .collection-name {
+    @apply text-xl;
+  }
+  
+  .collection-subtitle {
+    @apply text-xs;
+  }
+  
+  .collection-banner-text {
+    @apply p-4;
+  }
+  
+  .collection-number {
+    @apply text-4xl;
+  }
+}
+
+@media (max-width: 640px) {
+  .collection-banner-image {
+    height: 200px;
+  }
+  
+  .collection-name {
+    @apply text-lg;
+  }
+  
+  .collection-number {
+    @apply text-3xl;
+  }
+}

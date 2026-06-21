@@ -1,0 +1,140 @@
+/* src/styles/index.css - Fixed CSS Order */
+@import './category-banners.css';
+@import './categories.css';
+@import './hero.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background-cream text-text-dark font-body;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-primary-maroon text-background-cream;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background-cream-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-maroon rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-maroon-dark;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+
+  a {
+    @apply transition-all duration-300;
+  }
+
+  img {
+    @apply w-full h-auto;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24 xl:py-28;
+  }
+
+  .heading-luxury {
+    @apply font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight;
+  }
+
+  .heading-section {
+    @apply font-heading text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+  }
+
+  .subheading {
+    @apply font-heading text-lg md:text-xl lg:text-2xl text-text-muted font-light;
+  }
+
+  .body-text {
+    @apply text-base md:text-lg leading-relaxed text-text-dark-light;
+  }
+
+  .btn-primary {
+    @apply bg-primary-maroon text-background-cream hover:bg-primary-maroon-dark 
+           px-8 py-3 rounded-full font-button font-medium tracking-wider
+           transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border-2 border-primary-maroon text-primary-maroon 
+           hover:bg-primary-maroon hover:text-background-cream
+           px-8 py-3 rounded-full font-button font-medium tracking-wider
+           transition-all duration-300;
+  }
+
+  .btn-gold {
+    @apply bg-secondary-gold text-text-dark hover:bg-secondary-gold-dark
+           px-8 py-3 rounded-full font-button font-medium tracking-wider
+           transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .card-premium {
+    @apply bg-background-cream-light rounded-2xl shadow-soft 
+           hover:shadow-elevated transition-all duration-500 
+           overflow-hidden backdrop-blur-sm;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-gold {
+    text-shadow: 0 2px 30px rgba(201, 168, 76, 0.3);
+  }
+
+  .bg-glass {
+    @apply bg-white/80 backdrop-blur-md;
+  }
+
+  .bg-glass-dark {
+    @apply bg-primary-maroon/95 backdrop-blur-md;
+  }
+
+  .border-gold {
+    @apply border border-secondary-gold/30;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-luxury bg-clip-text text-transparent;
+  }
+
+  .smooth {
+    @apply transition-all duration-500 ease-in-out;
+  }
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "question": "What makes Darshan Masale spices premium?",
+    "questionMr": "दर्शन मसालेचे मसाले प्रीमियम कसे आहेत?",
+    "answer": "We source our spices from the finest farms, using traditional processing methods that preserve natural oils and flavors. Every batch is quality tested to ensure purity and freshness.",
+    "answerMr": "आम्ही आमचे मसाले उत्तम शेतातून मिळवतो, नैसर्गिक तेल आणि चव टिकवणाऱ्या पारंपरिक प्रक्रिया पद्धती वापरून. प्रत्येक बॅचची शुद्धता आणि ताजेपणा सुनिश्चित करण्यासाठी गुणवत्ता तपासणी केली जाते."
+  },
+  {
+    "id": 2,
+    "question": "Are your spices organic?",
+    "questionMr": "तुमचे मसाले सेंद्रिय आहेत का?",
+    "answer": "Yes, our spices are grown using sustainable farming practices without synthetic pesticides or fertilizers. We are certified organic by leading Indian certification bodies.",
+    "answerMr": "होय, आमचे मसाले सिंथेटिक कीटकनाशके किंवा खते न वापरता शाश्वत शेती पद्धती वापरून उगवले जातात. आम्ही प्रमुख भारतीय प्रमाणन संस्थांकडून सेंद्रिय प्रमाणित आहोत."
+  },
+  {
+    "id": 3,
+    "question": "How should I store my spices?",
+    "questionMr": "मी माझे मसाले कसे साठवावे?",
+    "answer": "Store spices in airtight containers away from direct sunlight, heat, and moisture. Proper storage ensures freshness for up to 2 years.",
+    "answerMr": "मसाले थेट सूर्यप्रकाश, उष्णता आणि आर्द्रतेपासून दूर हवाबंद कंटेनरमध्ये साठवा. योग्य साठवणुकीमुळे २ वर्षांपर्यंत ताजेपणा राहतो."
+  }
+]

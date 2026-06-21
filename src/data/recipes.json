@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "title": "Authentic Chicken Biryani",
+    "titleMr": "प्रमाणिक चिकन बिर्याणी",
+    "description": "Aromatic layered rice dish with premium spices",
+    "descriptionMr": "प्रीमियम मसाल्यांसह सुगंधी थरांचा तांदळाचा पदार्थ",
+    "image": "/images/recipes/biryani.jpg",
+    "prepTime": "30 mins",
+    "cookTime": "45 mins",
+    "servings": 4,
+    "difficulty": "Medium",
+    "ingredients": [
+      "1 kg Chicken",
+      "2 cups Basmati Rice",
+      "4 tbsp Darshan Masala Biryani Blend",
+      "Onions, Tomatoes, Yogurt",
+      "Ghee, Saffron, Mint"
+    ],
+    "steps": [
+      "Marinate chicken with spices for 2 hours",
+      "Cook rice with saffron and whole spices",
+      "Layer rice and chicken in a pot",
+      "Cook on low flame for 30 minutes"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Classic Dal Tadka",
+    "titleMr": "क्लासिक दाल तडका",
+    "description": "Comforting lentils tempered with aromatic spices",
+    "descriptionMr": "सुगंधी मसाल्यांनी तडका दिलेली दाल",
+    "image": "/images/recipes/dal-tadka.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "30 mins",
+    "servings": 4,
+    "difficulty": "Easy",
+    "ingredients": [
+      "1 cup Toor Dal",
+      "2 tomatoes, chopped",
+      "1 onion, finely chopped",
+      "2 tbsp ghee",
+      "1 tsp cumin seeds",
+      "Garlic, ginger, green chilies"
+    ],
+    "steps": [
+      "Pressure cook dal with turmeric",
+      "Prepare tadka with ghee, cumin, garlic",
+      "Add tomatoes and spices, cook until oil separates",
+      "Mix dal and tadka, garnish with coriander"
+    ]
+  }
+]
