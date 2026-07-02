@@ -1,0 +1,132 @@
+{
+  "en": {
+    "story": {
+      "title": "Our Journey of Flavor",
+      "subtitle": "Since 1995, Darshan Masale has been bringing authentic Indian flavors to homes across Maharashtra.",
+      "paragraphs": [
+        "What started as a small family business in Nandurbar has grown into a trusted name in premium spices. Our founder, inspired by traditional family recipes, set out to share the authentic taste of Indian spices with the world.",
+        "Today, we continue this legacy by sourcing the finest spices from sustainable farms and processing them using age-old techniques. Every batch is quality tested to ensure the purest, most aromatic spices reach your kitchen."
+      ],
+      "mission": "To bring the authentic taste of Indian spices to every home while preserving traditional farming and processing methods.",
+      "vision": "To become India's most trusted premium spice brand, known for quality, purity, and tradition.",
+      "values": ["Quality", "Purity", "Tradition", "Sustainability"]
+    },
+    "process": {
+      "title": "Our Manufacturing Process",
+      "subtitle": "From Farm to Your Kitchen",
+      "steps": [
+        {
+          "title": "Sourcing",
+          "description": "We partner with sustainable farms across India to source the finest spices."
+        },
+        {
+          "title": "Cleaning",
+          "description": "Spices are carefully cleaned and sorted to remove any impurities."
+        },
+        {
+          "title": "Processing",
+          "description": "Using traditional methods that preserve natural oils and flavors."
+        },
+        {
+          "title": "Quality Testing",
+          "description": "Every batch undergoes rigorous testing for purity and quality."
+        },
+        {
+          "title": "Packaging",
+          "description": "Premium packaging that locks in freshness and aroma."
+        }
+      ]
+    },
+    "whyChoose": {
+      "title": "Why Choose Darshan Masale?",
+      "subtitle": "Experience the difference of premium quality",
+      "points": [
+        {
+          "icon": "leaf",
+          "title": "100% Pure & Natural",
+          "description": "No additives, preservatives, or artificial colors"
+        },
+        {
+          "icon": "shield",
+          "title": "Quality Guaranteed",
+          "description": "Every batch tested for purity and freshness"
+        },
+        {
+          "icon": "heart",
+          "title": "Traditional Methods",
+          "description": "Preserving flavors passed through generations"
+        },
+        {
+          "icon": "globe",
+          "title": "Sustainable Sourcing",
+          "description": "Supporting local farmers and sustainable practices"
+        }
+      ]
+    }
+  },
+  "mr": {
+    "story": {
+      "title": "आमचा चवीचा प्रवास",
+      "subtitle": "१९९५ पासून, दर्शन मसाले संपूर्ण महाराष्ट्रातील घरांमध्ये प्रमाणिक भारतीय चव आणत आहे.",
+      "paragraphs": [
+        "नंदुरबारमध्ये एका छोट्या कौटुंबिक व्यवसायापासून जे सुरू झाले ते आता प्रीमियम मसाल्यांमधील विश्वासू नाव बनले आहे. पारंपारिक कौटुंबिक पाककृतींनी प्रेरित होऊन आमच्या संस्थापकाने भारतीय मसाल्यांची प्रमाणिक चव जगाला देण्याचा निर्णय घेतला.",
+        "आज, आम्ही ही परंपरा शाश्वत शेतीतून उत्तम मसाले मिळवून आणि जुन्या तंत्रांचा वापर करून प्रक्रिया करून पुढे नेत आहोत. प्रत्येक बॅचची गुणवत्ता तपासणी केली जाते जेणेकरून शुद्ध आणि सर्वात सुगंधी मसाले तुमच्या स्वयंपाकघरात पोहोचतात."
+      ],
+      "mission": "पारंपरिक शेती आणि प्रक्रिया पद्धती जतन करताना प्रत्येक घरात भारतीय मसाल्यांची प्रमाणिक चव आणणे.",
+      "vision": "गुणवत्ता, शुद्धता आणि परंपरा यासाठी ओळखला जाणारा भारतातील सर्वात विश्वासू प्रीमियम मसाला ब्रँड बनणे.",
+      "values": ["गुणवत्ता", "शुद्धता", "परंपरा", "शाश्वतता"]
+    },
+    "process": {
+      "title": "आमची उत्पादन प्रक्रिया",
+      "subtitle": "शेतातून तुमच्या स्वयंपाकघरापर्यंत",
+      "steps": [
+        {
+          "title": "सोर्सिंग",
+          "description": "आम्ही उत्तम मसाले मिळवण्यासाठी भारतभरातील शाश्वत शेतांसोबत भागीदारी करतो."
+        },
+        {
+          "title": "स्वच्छता",
+          "description": "कोणतीही अशुद्धता दूर करण्यासाठी मसाले काळजीपूर्वक स्वच्छ आणि वर्गीकृत केले जातात."
+        },
+        {
+          "title": "प्रक्रिया",
+          "description": "नैसर्गिक तेले आणि चव टिकवणारी पारंपरिक पद्धती वापरणे."
+        },
+        {
+          "title": "गुणवत्ता तपासणी",
+          "description": "प्रत्येक बॅच शुद्धता आणि गुणवत्तेसाठी कठोर तपासणीतून जाते."
+        },
+        {
+          "title": "पॅकेजिंग",
+          "description": "ताजेपणा आणि सुगंध टिकवणारे प्रीमियम पॅकेजिंग."
+        }
+      ]
+    },
+    "whyChoose": {
+      "title": "दर्शन मसाले का निवडावे?",
+      "subtitle": "प्रीमियम गुणवत्तेतील फरक अनुभवा",
+      "points": [
+        {
+          "icon": "leaf",
+          "title": "१००% शुद्ध आणि नैसर्गिक",
+          "description": "कोणतेही अॅडिटिव्ह, प्रिझर्व्हेटिव्ह किंवा कृत्रिम रंग नाहीत"
+        },
+        {
+          "icon": "shield",
+          "title": "गुणवत्ता हमी",
+          "description": "प्रत्येक बॅच शुद्धता आणि ताजेपणासाठी तपासली जाते"
+        },
+        {
+          "icon": "heart",
+          "title": "पारंपरिक पद्धती",
+          "description": "पिढ्यानपिढ्या चव जपणे"
+        },
+        {
+          "icon": "globe",
+          "title": "शाश्वत सोर्सिंग",
+          "description": "स्थानिक शेतकरी आणि शाश्वत पद्धतींना पाठिंबा देणे"
+        }
+      ]
+    }
+  }
+}   

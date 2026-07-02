@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "categories": "Categories",
+    "about": "About Us",
+    "ourProcess": "Our Process",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "wishlist": "Wishlist",
+    "cart": "Cart"
+  },
+  "hero": {
+    "title": "Premium Indian Spices",
+    "subtitle": "Homemade Taste... Tradition of Trust...",
+    "cta": "Explore Our Collection",
+    "learnMore": "Learn More"
+  },
+  "categories": {
+    "title": "Our Premium Categories",
+    "subtitle": "Discover our finest spice collection"
+  },
+  "products": {
+    "featured": "Featured Products",
+    "bestsellers": "Best Sellers",
+    "shopNow": "Shop Now",
+    "viewAll": "View All Products",
+    "outOfStock": "Out of Stock",
+    "addToCart": "Add to Cart",
+    "soldOut": "Sold Out"
+  },
+  "about": {
+    "title": "Our Story",
+    "subtitle": "Tradition of Trust Since 1995",
+    "mission": "Our Mission",
+    "vision": "Our Vision",
+    "quality": "Quality Commitment"
+  },
+  "footer": {
+    "about": "About Darshan Masale",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Info",
+    "newsletter": "Newsletter",
+    "newsletterSub": "Subscribe for exclusive offers",
+    "subscribe": "Subscribe",
+    "copyright": "© 2026 Darshan Masale. All rights reserved."
+  },
+  "common": {
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "addToCart": "Add to Cart",
+    "viewProduct": "View Product",
+    "noResults": "No results found",
+    "loading": "Loading..."
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "We'd love to hear from you",
+    "name": "Your Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "subject": "Subject",
+    "message": "Your Message",
+    "send": "Send Message",
+    "address": "Address",
+    "workingHours": "Working Hours",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions"
+  }
+}

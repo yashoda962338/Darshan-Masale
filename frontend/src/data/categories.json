@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Powder Collection",
+    "nameMr": "पावडर संग्रह",
+    "description": "Pure chilli, turmeric and coriander powders",
+    "descriptionMr": "शुद्ध मिरची, हळद आणि धनिया पावडर",
+    "slug": "powder"
+  },
+  {
+    "id": 2,
+    "name": "Premium Masala Collection",
+    "nameMr": "प्रीमियम मसाला संग्रह",
+    "description": "Luxury spice blends for authentic Indian cooking",
+    "descriptionMr": "प्रमाणिक भारतीय स्वयंपाकासाठी लक्झरी मसाला मिश्रण",
+    "slug": "masala"
+  },
+  {
+    "id": 3,
+    "name": "Special Cooking Collection",
+    "nameMr": "विशेष कुकिंग संग्रह",
+    "description": "Chicken, Mutton and cooking masalas",
+    "descriptionMr": "चिकन, मटन आणि कुकिंग मसाले",
+    "slug": "special-cooking"
+  },
+  {
+    "id": 4,
+    "name": "Budget Pouch Collection",
+    "nameMr": "बजेट पाउच संग्रह",
+    "description": "Affordable everyday spice packs",
+    "descriptionMr": "परवडणारे दैनंदिन मसाला पॅक",
+    "slug": "budget"
+  },
+  {
+    "id": 5,
+    "name": "Traditional Masala Collection",
+    "nameMr": "पारंपारिक मसाला संग्रह",
+    "description": "Traditional Maharashtrian spice recipes",
+    "descriptionMr": "पारंपारिक महाराष्ट्रीय मसाला पाककृती",
+    "slug": "traditional"
+  },
+  {
+    "id": 6,
+    "name": "Kolhapuri Collection",
+    "nameMr": "कोल्हापुरी संग्रह",
+    "description": "Authentic Kolhapuri spice blends",
+    "descriptionMr": "प्रमाणिक कोल्हापुरी मसाला मिश्रण",
+    "slug": "kolhapuri"
+  },
+  {
+    "id": 7,
+    "name": "Special Products",
+    "nameMr": "विशेष उत्पादने",
+    "description": "Unique specialty spice products",
+    "descriptionMr": "अद्वितीय विशेष मसाला उत्पादने",
+    "slug": "special"
+  }
+]
