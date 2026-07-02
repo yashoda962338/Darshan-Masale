@@ -3,10 +3,10 @@ import api from "./api";
 const orderService = {
 
     // Place Order
-    placeOrder: async (orderData) => {
-        const res = await api.post("/orders", orderData);
-        return res.data;
-    },
+        placeOrder: async (orderData) => {
+            const res = await api.post("/orders", orderData);
+            return res.data;
+        },
 
     // My Orders
     getOrders: async () => {
@@ -47,10 +47,11 @@ const orderService = {
     downloadInvoice: async (id) => {
 
         const token = localStorage.getItem("token");
+        const API_URL = import.meta.env.VITE_API_URL || 'https://darshan-masale-backend.onrender.com/api';
 
         const response = await fetch(
 
-            `http://localhost:5001/api/orders/${id}/invoice`,
+            `${API_URL}/orders/${id}/invoice`,
 
             {
                 headers: {

@@ -37,19 +37,10 @@ const VerifyForgotPasswordOTP = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5001/api/auth/verify-forgot-password-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp }),
-      });
-      
-      const data = await response.json();
-      if (data.success) {
-        toast.success('OTP verified! Please reset your password.');
-        navigate('/auth/reset-password', { state: { email } });
-      } else {
-        toast.error(data.message || 'Invalid OTP');
-      }
+      const authService = (await import('../../services/authService')).default;
+      await authService.verifyOTP({ email, otp, purpose: 'FORGOT_PASSWORD' });
+      toast.success('OTP verified! Please reset your password.');
+      navigate('/auth/reset-password', { state: { email } });
     } catch (error) {
       toast.error('Verification failed');
     } finally {
@@ -62,19 +53,9 @@ const VerifyForgotPasswordOTP = () => {
     setTimer(60);
     
     try {
-      const response = await fetch('http://localhost:5001/api/auth/forgot-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      
-      const data = await response.json();
-      if (data.success) {
-        toast.success('OTP resent successfully! Check your email.');
-      } else {
-        toast.error(data.message || 'Failed to resend OTP');
-        setCanResend(true);
-      }
+      const authService = (await import('../../services/authService')).default;
+      await authService.forgotPassword({ email });
+      toast.success('OTP resent successfully! Check your email.');
     } catch (error) {
       toast.error('Failed to resend OTP');
       setCanResend(true);

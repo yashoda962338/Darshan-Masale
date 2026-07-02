@@ -37,7 +37,8 @@ const CloudinaryImageUpload = ({
       formData.append('folder', folder);
 
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/admin/upload', {
+      const API_URL = import.meta.env.VITE_API_URL || 'https://darshan-masale-backend.onrender.com/api';
+      const response = await fetch(`${API_URL}/admin/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

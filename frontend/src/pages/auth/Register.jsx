@@ -37,27 +37,18 @@ const Register = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5001/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          password: formData.password,
-        }),
+      const authService = (await import('../../services/authService')).default;
+      await authService.register({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
       });
-      
-      const data = await response.json();
-      if (data.success) {
-        toast.success('Registration successful! Please check your email for OTP.');
-        navigate('/auth/verify-registration-otp', { 
-          state: { email: formData.email } 
-        });
-      } else {
-        toast.error(data.message || 'Registration failed');
-      }
+      toast.success('Registration successful! Please check your email for OTP.');
+      navigate('/auth/verify-registration-otp', { 
+        state: { email: formData.email } 
+      });
     } catch (error) {
       toast.error('Registration failed');
     } finally {

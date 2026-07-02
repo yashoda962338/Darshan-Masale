@@ -35,19 +35,10 @@ const VerifyRegistrationOTP = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5001/api/auth/verify-registration-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp }),
-      });
-      
-      const data = await response.json();
-      if (data.success) {
-        toast.success('OTP verified successfully! Please login.');
-        navigate('/auth/login');
-      } else {
-        toast.error(data.message || 'Invalid OTP');
-      }
+      const authService = (await import('../../services/authService')).default;
+      await authService.verifyOTP({ email, otp });
+      toast.success('OTP verified successfully! Please login.');
+      navigate('/auth/login');
     } catch (error) {
       toast.error('Verification failed');
     } finally {
@@ -60,19 +51,9 @@ const VerifyRegistrationOTP = () => {
     setTimer(60);
     
     try {
-      const response = await fetch('http://localhost:5001/api/auth/resend-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, purpose: 'REGISTRATION' }),
-      });
-      
-      const data = await response.json();
-      if (data.success) {
-        toast.success('OTP resent successfully! Please check your email.');
-      } else {
-        toast.error(data.message || 'Failed to resend OTP');
-        setCanResend(true);
-      }
+      const authService = (await import('../../services/authService')).default;
+      await authService.resendOTP({ email, purpose: 'REGISTRATION' });
+      toast.success('OTP resent successfully! Please check your email.');
     } catch (error) {
       toast.error('Failed to resend OTP');
       setCanResend(true);

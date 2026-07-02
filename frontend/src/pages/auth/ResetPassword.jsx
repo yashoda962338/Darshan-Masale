@@ -34,23 +34,14 @@ const ResetPassword = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5001/api/auth/reset-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          password: formData.password,
-          confirmPassword: formData.confirmPassword,
-        }),
+      const authService = (await import('../../services/authService')).default;
+      await authService.resetPassword({
+        email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
       });
-      
-      const data = await response.json();
-      if (data.success) {
-        toast.success('Password reset successful! Please login.');
-        navigate('/auth/login');
-      } else {
-        toast.error(data.message || 'Failed to reset password');
-      }
+      toast.success('Password reset successful! Please login.');
+      navigate('/auth/login');
     } catch (error) {
       toast.error('Failed to reset password');
     } finally {
