@@ -4,27 +4,39 @@ const config = require('../config/environment');
 const logger = require('../config/logger');
 
 // Create transporter
+// Create transporter
 const transporter = nodemailer.createTransport({
-    host: config.email.host,
-    port: config.email.port,
-    secure: config.email.secure,
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT),
+    secure: false,
+
     auth: {
-        user: config.email.user,
-        pass: config.email.password,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
     },
-    pool: true,
-    maxConnections: 5,
-    maxMessages: 100,
-    rateDelta: 1000,
-    rateLimit: 5,
+
+    tls: {
+        rejectUnauthorized: false,
+    },
+
+    connectionTimeout: 60000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000,
+
+    logger: true,
+    debug: true,
 });
 
 // Verify transporter on startup
 transporter.verify((error, success) => {
     if (error) {
-        logger.error('Email service verification failed:', error.message);
+        console.log("❌ SMTP VERIFY FAILED");
+        console.log(error);
+
+        logger.error(error.message);
     } else {
-        logger.info('✅ Email service ready to send emails');
+        console.log("✅ SMTP Connected Successfully");
+        logger.info("✅ Email service ready");
     }
 });
 
@@ -378,4 +390,5 @@ const sendEmail = async (to, subject, html, text = '') => {
 module.exports = {
     sendOTPEmail,
     sendEmail,
+    sendOrderSuccessEmail
 };
