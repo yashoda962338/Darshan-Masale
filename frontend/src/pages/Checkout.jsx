@@ -102,7 +102,7 @@ const Checkout = () => {
 
     ]);
 
-    const shipping = subtotal >= 500 ? 0 : 0;
+    const shipping = subtotal >= 500 ? 0 : 49;
 
     const total = subtotal + shipping - couponDiscount;
 
