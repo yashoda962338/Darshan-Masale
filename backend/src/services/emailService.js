@@ -127,7 +127,7 @@ const buildBaseTemplate = (bodyContent) => `
 const sendEmail = async (to, subject, html, text = '') => {
     try {
         const mailOptions = {
-            from: `"Darshan Masale" <${config.email.user}>`,
+            from: config.email.from,
             to,
             subject,
             html,
@@ -228,7 +228,7 @@ Nandurbar, Maharashtra, India
         `.trim();
 
         const mailOptions = {
-            from: `"Darshan Masale" <${config.email.user}>`,
+            from: config.email.from,
             to: email,
             subject,
             html,
