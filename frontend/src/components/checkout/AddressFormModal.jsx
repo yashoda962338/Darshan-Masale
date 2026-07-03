@@ -48,7 +48,7 @@ const AddressFormModal = ({
 
                 pincode: editData.pincode || "",
 
-                addressType: editData.addressType || "HOME",
+                addressType: editData.addressType || "Home",
 
                 isDefault: editData.isDefault || false,
 
