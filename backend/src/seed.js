@@ -1,4 +1,5 @@
-// 🔴 BACKEND: src/seed.js - Updated with proper hashing
+// 🔴 BACKEND: src/seed.js - Adds/updates ONE admin user only.
+// Does NOT delete or touch any existing users (customers stay safe).
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bcrypt = require('bcryptjs');
@@ -13,108 +14,54 @@ const hashPassword = async (password) => {
   return await bcrypt.hash(password, salt);
 };
 
-const users = [
-  {
-    firstName: 'Super',
-    lastName: 'Admin',
-    displayName: 'Darshan Admin',
-    email: 'admin@darshanmasale.com',
-    phone: '9876543210',
-    passwordHash: null, // Will be set after hashing
-    role: 'SUPER_ADMIN',
-    status: 'ACTIVE',
-    gender: 'MALE',
-    emailVerified: true,
-    phoneVerified: true,
-    preferredLanguage: 'en',
-    timezone: 'Asia/Kolkata'
-  },
-  {
-    firstName: 'Test',
-    lastName: 'Customer',
-    displayName: 'Test Customer',
-    email: 'customer@darshanmasale.com',
-    phone: '9876543211',
-    passwordHash: null,
-    role: 'CUSTOMER',
-    status: 'ACTIVE',
-    gender: 'FEMALE',
-    emailVerified: true,
-    phoneVerified: true,
-    preferredLanguage: 'en',
-    timezone: 'Asia/Kolkata'
-  },
-  {
-    firstName: 'Priya',
-    lastName: 'Sharma',
-    displayName: 'Priya Sharma',
-    email: 'priya@example.com',
-    phone: '9876543212',
-    passwordHash: null,
-    role: 'CUSTOMER',
-    status: 'ACTIVE',
-    gender: 'FEMALE',
-    emailVerified: true,
-    phoneVerified: true,
-    preferredLanguage: 'en',
-    timezone: 'Asia/Kolkata'
-  }
-];
+const adminData = {
+  firstName: 'Super',
+  lastName: 'Admin',
+  displayName: 'Darshan Admin',
+  email: 'darshankhairnar381@gmail.com',
+  phone: '9209510502',
+  role: 'SUPER_ADMIN',
+  status: 'ACTIVE',
+  gender: 'MALE',
+  emailVerified: true,
+  phoneVerified: true,
+  preferredLanguage: 'en',
+  timezone: 'Asia/Kolkata'
+};
 
-async function seedUsers() {
+const adminPassword = 'Darshan@2008';
+
+async function seedAdmin() {
   try {
-    console.log('🌱 Starting database seed...');
+    console.log('🌱 Starting admin seed (safe mode — no existing users are deleted)...');
     await connectDB();
-    
-    console.log('🗑️ Removing existing users...');
-    await User.deleteMany({});
-    
-    console.log('🔑 Hashing passwords...');
-    // Hash passwords for each user
-    const hashedUsers = await Promise.all(users.map(async (user) => {
-      const password = user.email === 'admin@darshanmasale.com' ? 'admin123' :
-                       user.email === 'priya@example.com' ? 'priya123' :
-                       'customer123';
-      user.passwordHash = await hashPassword(password);
-      return user;
-    }));
-    
-    console.log('📦 Creating test users...');
-    const createdUsers = await User.insertMany(hashedUsers);
-    
-    console.log('\n✅ Seed completed successfully!');
-    console.log('📊 Created Users:');
+
+    console.log('🔑 Hashing password...');
+    const passwordHash = await hashPassword(adminPassword);
+
+    console.log('📦 Creating/updating admin user...');
+    // upsert: if a user with this email exists, update it to SUPER_ADMIN
+    // with this password; otherwise create it. No other users are touched.
+    const admin = await User.findOneAndUpdate(
+      { email: adminData.email },
+      { ...adminData, passwordHash },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+
+    console.log('\n✅ Admin seed completed successfully!');
     console.log('========================================');
-    
-    createdUsers.forEach((user, index) => {
-      console.log(`${index + 1}. ${user.displayName || user.firstName + ' ' + user.lastName}`);
-      console.log(`   📧 Email: ${user.email}`);
-      console.log(`   📱 Phone: ${user.phone}`);
-      console.log(`   👤 Role: ${user.role}`);
-      console.log(`   🔑 Password: ${user.email === 'admin@darshanmasale.com' ? 'admin123' : 
-                                     user.email === 'priya@example.com' ? 'priya123' : 
-                                     'customer123'}`);
-      console.log('----------------------------------------');
-    });
-    
-    console.log('\n🔑 Test Credentials:');
+    console.log(`👤 Name:  ${admin.displayName}`);
+    console.log(`📧 Email: ${admin.email}`);
+    console.log(`📱 Phone: ${admin.phone}`);
+    console.log(`🛡️  Role:  ${admin.role}`);
+    console.log('----------------------------------------');
+
+    console.log('\n🔑 Admin Login Credentials:');
     console.log('========================================');
-    console.log('Admin Login:');
-    console.log('   Email: admin@darshanmasale.com');
-    console.log('   Password: admin123');
-    console.log('   Role: SUPER_ADMIN');
+    console.log(`   Email:    ${adminData.email}`);
+    console.log(`   Password: ${adminPassword}`);
+    console.log(`   Role:     SUPER_ADMIN`);
     console.log('');
-    console.log('Customer Login:');
-    console.log('   Email: customer@darshanmasale.com');
-    console.log('   Password: customer123');
-    console.log('   Role: CUSTOMER');
-    console.log('');
-    console.log('Customer Login 2:');
-    console.log('   Email: priya@example.com');
-    console.log('   Password: priya123');
-    console.log('   Role: CUSTOMER');
-    console.log('========================================');
-    
   } catch (error) {
     console.error('❌ Seed failed:', error.message);
     console.error(error);
@@ -125,4 +72,4 @@ async function seedUsers() {
   }
 }
 
-seedUsers();
+seedAdmin();

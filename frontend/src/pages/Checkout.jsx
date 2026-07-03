@@ -480,40 +480,7 @@ const Checkout = () => {
 
                             </label>
 
-                            <label className="flex items-center gap-3 mb-4 cursor-pointer">
-
-                                <input
-
-                                    type="radio"
-
-                                    checked={paymentMethod === "UPI"}
-
-                                    onChange={() => setPaymentMethod("UPI")}
-
-                                />
-
-                                UPI Payment
-
-                            </label>
-
-                            <label className="flex items-center gap-3 cursor-pointer">
-
-                                <input
-
-                                    type="radio"
-
-                                    checked={paymentMethod === "CARD"}
-
-                                    onChange={() => setPaymentMethod("CARD")}
-
-                                />
-
-                                Card / Net Banking
-
-                            </label>
-
                         </div>
-
                     </div>
 
                     {/* RIGHT */}

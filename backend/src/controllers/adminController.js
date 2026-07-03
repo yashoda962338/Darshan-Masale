@@ -378,7 +378,7 @@ exports.updateOrderStatus = async (req, res) => {
 
             if (status === "DELIVERED") {
 
-                order.paymentStatus = "COMPLETED";
+                order.paymentStatus = "SUCCESS";
 
             }
 
@@ -408,7 +408,7 @@ exports.updateOrderStatus = async (req, res) => {
 
             else {
 
-                order.paymentStatus = "COMPLETED";
+                order.paymentStatus = "SUCCESS";
 
             }
 
@@ -432,14 +432,19 @@ exports.updateOrderStatus = async (req, res) => {
 
     catch (error) {
 
-        console.error("Update order error:", error);
+        console.log("========== UPDATE ORDER ERROR ==========");
+
+        console.log(error);
+
+        console.log(error.stack);
+
+        console.log(error.errors);
+
+        console.log("========================================");
 
         res.status(500).json({
-
             success: false,
-
             message: error.message
-
         });
 
     }

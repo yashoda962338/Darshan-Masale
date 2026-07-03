@@ -341,11 +341,114 @@ Nandurbar, Maharashtra, India
 };
 
 // ============================================================
+// CONTACT FORM EMAIL
+// ============================================================
+
+const sendContactEmail = async ({
+    name,
+    email,
+    phone,
+    subject,
+    message,
+}) => {
+
+    try {
+
+        const bodyContent = `
+
+        <h2 style="color:#7B1F2B;margin-bottom:20px;">
+            📩 New Contact Form Submission
+        </h2>
+
+        <table style="width:100%;border-collapse:collapse;">
+
+            <tr>
+                <td style="padding:10px;font-weight:bold;">Name</td>
+                <td style="padding:10px;">${name}</td>
+            </tr>
+
+            <tr>
+                <td style="padding:10px;font-weight:bold;">Email</td>
+                <td style="padding:10px;">${email}</td>
+            </tr>
+
+            <tr>
+                <td style="padding:10px;font-weight:bold;">Phone</td>
+                <td style="padding:10px;">${phone || "-"}</td>
+            </tr>
+
+            <tr>
+                <td style="padding:10px;font-weight:bold;">Subject</td>
+                <td style="padding:10px;">${subject}</td>
+            </tr>
+
+        </table>
+
+        <div
+            style="
+            margin-top:25px;
+            padding:20px;
+            background:#FFF8F0;
+            border-left:4px solid #C9A84C;
+            "
+        >
+
+        <h3>Message</h3>
+
+        <p style="white-space:pre-line;">
+            ${message}
+        </p>
+
+        </div>
+
+        `;
+
+        const html = buildBaseTemplate(bodyContent);
+
+        return await sendEmail(
+
+            "darshankhairnar381@gmail.com",
+
+            `📩 Contact Form : ${subject}`,
+
+            html,
+
+            `
+Name : ${name}
+
+Email : ${email}
+
+Phone : ${phone}
+
+Subject : ${subject}
+
+Message :
+
+${message}
+            `
+        );
+
+    }
+
+    catch (error) {
+
+        logger.error(error);
+
+        return false;
+
+    }
+
+};
+
+// ============================================================
 // EXPORTS
 // ============================================================
 
 module.exports = {
+
     sendOTPEmail,
     sendEmail,
     sendOrderSuccessEmail,
+    sendContactEmail
+
 };

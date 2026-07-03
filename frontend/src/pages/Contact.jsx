@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -17,17 +18,61 @@ const Contact = () => {
   })
   const [submitting, setSubmitting] = useState(false)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitting(true)
-    setTimeout(() => {
-      toast.success(
-        language === 'mr' ? 'संदेश पाठवला! आम्ही लवकरच प्रतिसाद देऊ.' : 'Message sent! We\'ll respond soon.'
-      )
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-      setSubmitting(false)
-    }, 1500)
-  }
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    setSubmitting(true);
+
+    try {
+
+      const response = await axios.post(
+
+        `${import.meta.env.VITE_API_URL}/contact`,
+
+        formData
+
+      );
+
+      if (response.data.success) {
+
+        toast.success(response.data.message);
+
+        setFormData({
+
+          name: "",
+
+          email: "",
+
+          phone: "",
+
+          subject: "",
+
+          message: "",
+
+        });
+
+      }
+
+    } catch (err) {
+
+      console.log(err);
+
+      toast.error(
+
+        err.response?.data?.message ||
+
+        "Failed to send message."
+
+      );
+
+    } finally {
+
+      setSubmitting(false);
+
+    }
+
+  };
 
   return (
     <>

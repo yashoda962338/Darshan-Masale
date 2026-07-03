@@ -21,6 +21,7 @@ const adminRoutes = require('./routes/admin');
 const settingsRoutes = require('./routes/settings');
 const galleryRoutes = require('./routes/gallery');
 const paymentRoutes=require("./routes/paymentRoutes");
+const contactRoutes = require("./routes/contact");
 
 dotenv.config();
 
@@ -144,7 +145,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use("/api/contact",contactRoutes);
 app.use("/api/payments",paymentRoutes);
+
 
 // User Routes (Protected)
 app.use('/api/users', userRoutes);
