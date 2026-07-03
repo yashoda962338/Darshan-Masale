@@ -22,11 +22,10 @@ const transporter = nodemailer.createTransport({
     tls: {
         rejectUnauthorized: false,
     },
-    requireTLS: true,
 
-    connectionTimeout: 120000,
-    greetingTimeout: 120000,
-    socketTimeout: 120000,
+    connectionTimeout: 60000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000,
 });
 
 logger.info('========== EMAIL CONFIG ==========');
@@ -59,157 +58,56 @@ transporter.verify((error) => {
 
 /**
  * Shared base wrapper for all outgoing emails.
- * @param {string} bodyContent - Inner HTML content
+ * IMPORTANT: All critical styling is INLINE (not in a <style> block).
+ * Gmail's mobile app, Outlook, and several webmail clients strip or
+ * partially ignore <style> blocks, which was causing the OTP box /
+ * colors to disappear for real recipients even though sendMail()
+ * succeeded. Inline styles + bgcolor attributes render reliably
+ * everywhere. We also declare color-scheme so Gmail/Outlook dark
+ * mode does not auto-invert the light box and swallow the text.
+ * @param {string} bodyContent - Inner HTML content (must use inline styles)
  * @returns {string}
  */
 const buildBaseTemplate = (bodyContent) => `
   <!DOCTYPE html>
-  <html>
+  <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body {
-        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-        background-color: #FDF8F0;
-        margin: 0;
-        padding: 40px 20px;
-      }
-      .container {
-        max-width: 580px;
-        margin: 0 auto;
-        padding: 40px;
-        background: #FFFFFF;
-        border-radius: 24px;
-        box-shadow: 0 20px 60px rgba(123, 31, 43, 0.08);
-        border: 1px solid rgba(201, 168, 76, 0.1);
-      }
-      .header {
-        text-align: center;
-        padding-bottom: 24px;
-        border-bottom: 2px solid #F5EDE0;
-      }
-      .logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 32px;
-        font-weight: 700;
-        color: #7B1F2B;
-      }
-      .gold {
-        color: #C9A84C;
-      }
-      .subtitle {
-        color: #7A7A7A;
-        font-size: 14px;
-        margin-top: 4px;
-      }
-      .content {
-        padding: 30px 0 20px;
-      }
-      .greeting {
-        font-size: 16px;
-        color: #1C1C1C;
-        margin-bottom: 12px;
-      }
-      .message {
-        font-size: 15px;
-        color: #3D3D3D;
-        line-height: 1.6;
-        margin-bottom: 24px;
-      }
-      .otp-box {
-        background: linear-gradient(135deg, #FDF8F0 0%, #F5EDE0 100%);
-        padding: 28px 20px;
-        border-radius: 16px;
-        text-align: center;
-        margin: 24px 0;
-        border: 1px solid rgba(201, 168, 76, 0.15);
-      }
-      .otp-code {
-        font-size: 44px;
-        font-weight: 700;
-        color: #7B1F2B;
-        letter-spacing: 10px;
-        font-family: 'Courier New', monospace;
-      }
-      .otp-expiry {
-        color: #7A7A7A;
-        font-size: 13px;
-        margin-top: 10px;
-      }
-      .divider {
-        border-top: 1px solid #F5EDE0;
-        margin: 24px 0;
-      }
-      .footer {
-        text-align: center;
-        color: #7A7A7A;
-        font-size: 12px;
-        padding-top: 20px;
-      }
-      .footer a {
-        color: #C9A84C;
-        text-decoration: none;
-      }
-      .security-note {
-        background: #FFF8F0;
-        padding: 12px 16px;
-        border-radius: 12px;
-        font-size: 13px;
-        color: #7A7A7A;
-        border-left: 3px solid #C9A84C;
-        margin-top: 16px;
-      }
-      .button {
-        display: inline-block;
-        padding: 12px 32px;
-        background: #7B1F2B;
-        color: #FFFFFF;
-        text-decoration: none;
-        border-radius: 30px;
-        font-weight: 500;
-        font-size: 14px;
-      }
-      table.order-table {
-        width: 100%;
-        font-size: 15px;
-        border-collapse: collapse;
-        margin: 16px 0;
-      }
-      table.order-table td {
-        padding: 10px 4px;
-        border-bottom: 1px solid #F5EDE0;
-        color: #3D3D3D;
-      }
-      table.order-table td:first-child {
-        color: #7A7A7A;
-        font-weight: 500;
-      }
-      .status-success {
-        color: #1E7E34;
-        font-weight: 600;
-      }
-      @media (max-width: 480px) {
-        .container { padding: 24px; }
-        .otp-code { font-size: 32px; letter-spacing: 6px; }
-        .logo { font-size: 24px; }
-      }
-    </style>
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Darshan Masale</title>
   </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <div class="logo">Darshan <span class="gold">Masale</span></div>
-        <div class="subtitle">Premium Indian Spices • Since 1995</div>
-      </div>
-      <div class="content">
-        ${bodyContent}
-      </div>
-      <div class="footer">
-        <p>© ${new Date().getFullYear()} Darshan Masale. All rights reserved.</p>
-        <p style="margin-top: 4px;">Nandurbar, Maharashtra, India</p>
-      </div>
-    </div>
+  <body style="margin:0; padding:0; background-color:#FDF8F0; -webkit-text-size-adjust:100%; text-size-adjust:100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FDF8F0" style="background-color:#FDF8F0; padding:40px 20px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="580" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="width:580px; max-width:580px; background-color:#FFFFFF; border-radius:24px; border:1px solid #F0E4C8;">
+            <tr>
+              <td style="padding:40px 40px 24px 40px; text-align:center; border-bottom:2px solid #F5EDE0;">
+                <div style="font-family:Georgia, 'Playfair Display', serif; font-size:32px; font-weight:700; color:#7B1F2B;">
+                  Darshan <span style="color:#C9A84C;">Masale</span>
+                </div>
+                <div style="color:#7A7A7A; font-size:14px; margin-top:4px; font-family:Arial, Helvetica, sans-serif;">
+                  Premium Indian Spices &bull; Since 1995
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:30px 40px 10px 40px; font-family:Arial, Helvetica, sans-serif;">
+                ${bodyContent}
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 40px 32px 40px; text-align:center; color:#7A7A7A; font-size:12px; font-family:Arial, Helvetica, sans-serif;">
+                <p style="margin:0;">© ${new Date().getFullYear()} Darshan Masale. All rights reserved.</p>
+                <p style="margin:4px 0 0 0;">Nandurbar, Maharashtra, India</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
   </html>
 `;
@@ -277,22 +175,34 @@ const sendOTPEmail = async (email, otp, purpose = 'REGISTRATION', name = '') => 
             : "If you didn't request this, please ignore this email.";
 
         const bodyContent = `
-          <div class="greeting">${greeting}</div>
-          <div class="message">${introMessage}</div>
+          <div style="font-size:16px; color:#1C1C1C; margin-bottom:12px;">${greeting}</div>
+          <div style="font-size:15px; color:#3D3D3D; line-height:1.6; margin-bottom:24px;">${introMessage}</div>
 
-          <div class="otp-box">
-            <div class="otp-code">${otp}</div>
-            <div class="otp-expiry">⏱️ This code expires in <strong>5 minutes</strong></div>
-          </div>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F5EDE0" style="background-color:#F5EDE0; border-radius:16px; border:1px solid #E8D9AE; margin:24px 0;">
+            <tr>
+              <td align="center" style="padding:28px 20px;">
+                <div style="font-size:44px; font-weight:700; color:#7B1F2B; letter-spacing:10px; font-family:'Courier New', Courier, monospace;">
+                  ${otp}
+                </div>
+                <div style="color:#7A7A7A; font-size:13px; margin-top:10px; font-family:Arial, Helvetica, sans-serif;">
+                  &#9200; This code expires in <strong>5 minutes</strong>
+                </div>
+              </td>
+            </tr>
+          </table>
 
-          <div class="security-note">
-            🔒 For security, never share this OTP with anyone. ${ignoreMessage}
-          </div>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF8F0" style="background-color:#FFF8F0; border-left:3px solid #C9A84C; margin-top:16px;">
+            <tr>
+              <td style="padding:12px 16px; font-size:13px; color:#7A7A7A;">
+                &#128274; For security, never share this OTP with anyone. ${ignoreMessage}
+              </td>
+            </tr>
+          </table>
 
-          <div class="divider"></div>
+          <div style="border-top:1px solid #F5EDE0; margin:24px 0;"></div>
 
-          <div style="text-align: center; font-size: 13px; color: #7A7A7A;">
-            Need help? Contact us at <a href="mailto:support@darshanmasale.com">support@darshanmasale.com</a>
+          <div style="text-align:center; font-size:13px; color:#7A7A7A;">
+            Need help? Contact us at <a href="mailto:support@darshanmasale.com" style="color:#C9A84C; text-decoration:none;">support@darshanmasale.com</a>
           </div>
         `;
 
@@ -357,40 +267,44 @@ const sendOrderSuccessEmail = async (email, order) => {
         const subject = `Order Confirmed - ${order.orderNumber}`;
 
         const bodyContent = `
-          <div class="greeting" style="font-size:18px; color:#1E7E34; font-weight:600;">
-            Payment Successful ✅
+          <div style="font-size:18px; color:#1E7E34; font-weight:600; margin-bottom:12px;">
+            Payment Successful &#9989;
           </div>
-          <div class="message">
+          <div style="font-size:15px; color:#3D3D3D; line-height:1.6; margin-bottom:24px;">
             Thank you for shopping with Darshan Masale. Your order has been confirmed and we will start processing it shortly.
           </div>
 
-          <table class="order-table">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin:16px 0;">
             <tr>
-              <td>Order Number</td>
-              <td>${order.orderNumber}</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#7A7A7A; font-weight:500; font-size:15px;">Order Number</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#3D3D3D; font-size:15px;">${order.orderNumber}</td>
             </tr>
             <tr>
-              <td>Total Amount</td>
-              <td>₹${order.total}</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#7A7A7A; font-weight:500; font-size:15px;">Total Amount</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#3D3D3D; font-size:15px;">₹${order.total}</td>
             </tr>
             <tr>
-              <td>Payment Status</td>
-              <td class="status-success">${order.paymentStatus}</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#7A7A7A; font-weight:500; font-size:15px;">Payment Status</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#1E7E34; font-weight:600; font-size:15px;">${order.paymentStatus}</td>
             </tr>
             <tr>
-              <td>Order Status</td>
-              <td>${order.status}</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#7A7A7A; font-weight:500; font-size:15px;">Order Status</td>
+              <td style="padding:10px 4px; border-bottom:1px solid #F5EDE0; color:#3D3D3D; font-size:15px;">${order.status}</td>
             </tr>
           </table>
 
-          <div style="text-align: center; margin: 28px 0 12px;">
-            <a href="${CUSTOMER_ORDERS_URL}" class="button">View My Orders</a>
-          </div>
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:28px auto 12px auto;">
+            <tr>
+              <td bgcolor="#7B1F2B" style="background-color:#7B1F2B; border-radius:30px;">
+                <a href="${CUSTOMER_ORDERS_URL}" style="display:inline-block; padding:12px 32px; color:#FFFFFF; text-decoration:none; font-weight:500; font-size:14px; font-family:Arial, Helvetica, sans-serif;">View My Orders</a>
+              </td>
+            </tr>
+          </table>
 
-          <div class="divider"></div>
+          <div style="border-top:1px solid #F5EDE0; margin:24px 0;"></div>
 
-          <div style="text-align: center; font-size: 13px; color: #7A7A7A;">
-            Need help? Contact us at <a href="mailto:support@darshanmasale.com">support@darshanmasale.com</a>
+          <div style="text-align:center; font-size:13px; color:#7A7A7A;">
+            Need help? Contact us at <a href="mailto:support@darshanmasale.com" style="color:#C9A84C; text-decoration:none;">support@darshanmasale.com</a>
           </div>
         `;
 
