@@ -27,6 +27,16 @@ const transporter = nodemailer.createTransport({
     debug: true,
 });
 
+console.log("========== EMAIL CONFIG ==========");
+console.log({
+  host: config.email.host,
+  port: config.email.port,
+  secure: config.email.secure,
+  user: config.email.user,
+  pass: config.email.password ? "Loaded ✅" : "Missing ❌",
+});
+console.log("==================================");
+
 // Verify transporter on startup
 transporter.verify((error, success) => {
     if (error) {
