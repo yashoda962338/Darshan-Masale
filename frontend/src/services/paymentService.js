@@ -5,10 +5,11 @@ const paymentService = {
     createOrder: async (orderId) => {
 
         const res = await api.post("/payments/create-order", {
-
             orderId
-
         });
+
+        console.log("PAYMENT API RESPONSE");
+        console.log(res.data);
 
         return res.data;
 

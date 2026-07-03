@@ -76,7 +76,7 @@ exports.createCashfreeOrder = async (req, res) => {
 
         //--------------------------------------------------
 
-        const response = await cashfree.PGCreateOrder("2022-09-01",request);
+        const response = await cashfree.PGCreateOrder("2022-09-01", request);
         //--------------------------------------------------
 
         order.cashfreeOrderId = response.data.order_id;
@@ -171,7 +171,7 @@ exports.verifyPayment = async (req, res) => {
         // FETCH CASHFREE ORDER
         //------------------------------------------
 
-       const response = await cashfree.PGFetchOrder("2022-09-01",order.cashfreeOrderId);
+        const response = await cashfree.PGFetchOrder("2022-09-01", order.cashfreeOrderId);
 
         console.log("============== CASHFREE RESPONSE ==============");
 
@@ -380,7 +380,12 @@ exports.retryPayment = async (req, res) => {
         console.log("Keys =", Object.keys(cashfree));
         console.log("====================================");
 
-        const response = await cashfree.PGCreateOrder("2022-09-01",request);
+        const response = await cashfree.PGCreateOrder("2022-09-01", request);
+
+        console.log("====================================");
+        console.log("FULL CASHFREE RESPONSE");
+        console.log(JSON.stringify(response.data, null, 2));
+        console.log("====================================");
 
         //----------------------------------------
         // UPDATE ORDER
