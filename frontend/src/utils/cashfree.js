@@ -7,13 +7,10 @@ export const initializeCashfree = async () => {
     if (!cashfree) {
 
         cashfree = await load({
-
-            mode: "sandbox"
-
+            mode: import.meta.env.VITE_CASHFREE_MODE
         });
 
     }
 
     return cashfree;
-
 };
