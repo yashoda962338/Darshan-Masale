@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, Mail, Phone, Edit, Save, X, Loader2, MapPin, Trash2, Plus } from 'lucide-react';
+import { User, Mail, Phone, Edit, Save, X, Loader2, MapPin, Trash2, Plus,Check } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import userService from '../../services/userService';
 import Button from '../../components/ui/Button';
