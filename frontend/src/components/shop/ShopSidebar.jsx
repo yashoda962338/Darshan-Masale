@@ -1,17 +1,34 @@
 // src/components/shop/ShopSidebar.jsx
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import categoryService from '../../services/categoryService'
 
 const ShopSidebar = ({ filters, onFilterChange, language, isMobile }) => {
-  const categories = [
+  const [categories, setCategories] = useState([])
+  const [loadingCategories, setLoadingCategories] = useState(true)
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await categoryService.getCategories({ limit: 100 })
+        setCategories(Array.isArray(data) ? data : data?.categories || [])
+      } catch (error) {
+        console.error('Failed to load categories for shop sidebar', error)
+        setCategories([])
+      } finally {
+        setLoadingCategories(false)
+      }
+    }
+
+    loadCategories()
+  }, [])
+
+  const categoryOptions = [
     { id: 'all', label: language === 'mr' ? 'सर्व' : 'All Categories' },
-    { id: 'powder', label: language === 'mr' ? 'पावडर' : 'Powder' },
-    { id: 'masala', label: language === 'mr' ? 'प्रीमियम मसाला' : 'Premium Masala' },
-    { id: 'special-cooking', label: language === 'mr' ? 'विशेष कुकिंग' : 'Special Cooking' },
-    { id: 'budget', label: language === 'mr' ? 'बजेट' : 'Budget' },
-    { id: 'traditional', label: language === 'mr' ? 'पारंपारिक' : 'Traditional' },
-    { id: 'kolhapuri', label: language === 'mr' ? 'कोल्हापुरी' : 'Kolhapuri' },
-    { id: 'special', label: language === 'mr' ? 'विशेष' : 'Special' },
+    ...categories.map((category) => ({
+      id: category.slug || '',
+      label: language === 'mr' ? (category.nameMr || category.name) : category.name,
+    })),
   ]
 
   const weights = [
@@ -59,19 +76,23 @@ const ShopSidebar = ({ filters, onFilterChange, language, isMobile }) => {
           {language === 'mr' ? 'श्रेणी' : 'Category'}
         </h4>
         <div className="space-y-1.5">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => onFilterChange({ category: cat.id })}
-              className={`w-full text-left px-3 py-2 rounded-lg font-body text-sm transition-all ${
-                filters.category === cat.id
-                  ? 'bg-primary-maroon text-white shadow-md'
-                  : 'hover:bg-primary-maroon/5 text-text-dark'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+          {loadingCategories ? (
+            <div className="text-sm text-text-muted">Loading categories...</div>
+          ) : (
+            categoryOptions.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => onFilterChange({ category: cat.id })}
+                className={`w-full text-left px-3 py-2 rounded-lg font-body text-sm transition-all ${
+                  filters.category === cat.id
+                    ? 'bg-primary-maroon text-white shadow-md'
+                    : 'hover:bg-primary-maroon/5 text-text-dark'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))
+          )}
         </div>
       </div>
 
@@ -152,7 +173,7 @@ const ShopSidebar = ({ filters, onFilterChange, language, isMobile }) => {
           <div className="flex flex-wrap gap-2 mt-2">
             {filters.category !== 'all' && (
               <span className="px-2 py-0.5 bg-primary-maroon/10 text-primary-maroon rounded-full text-[10px] font-button">
-                {categories.find(c => c.id === filters.category)?.label}
+                {categoryOptions.find(c => c.id === filters.category)?.label}
               </span>
             )}
             {filters.weight !== 'all' && (

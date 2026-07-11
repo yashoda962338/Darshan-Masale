@@ -47,9 +47,43 @@ const AdminReports = () => {
     }
   };
 
-  const exportReport = (type) => {
-    toast.success(`${type} report exported successfully!`);
-  };
+const exportReport = (type) => {
+  if (!reportData || reportData.length === 0) {
+    toast.error('No data available to export');
+    return;
+  }
+
+  const rows = reportData.map((item) => {
+    let label = '';
+    if (filters.period === 'daily') {
+      label = `${item._id.day}/${item._id.month}/${item._id.year}`;
+    } else if (filters.period === 'weekly') {
+      label = `Week ${item._id.week}, ${item._id.year}`;
+    } else {
+      const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      label = `${monthNames[item._id.month - 1]} ${item._id.year}`;
+    }
+    const avgOrder = item.orders > 0 ? (item.revenue / item.orders).toFixed(0) : 0;
+    return [label, item.revenue, item.orders, avgOrder];
+  });
+
+  const header = ['Period', 'Revenue', 'Orders', 'Avg Order Value'];
+  const csvContent = [header, ...rows]
+    .map((row) => row.map((val) => `"${val}"`).join(','))
+    .join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', `${type}-report-${new Date().toISOString().split('T')[0]}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+
+  toast.success(`${type} report exported successfully!`);
+};
 
   if (loading) {
     return (

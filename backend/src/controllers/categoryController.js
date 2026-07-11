@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 exports.getCategories = async (req, res) => {
   try {
     const { search, status, page = 1, limit = 20 } = req.query;
-    
+
     const filter = { deletedAt: null };
     if (search) {
       filter.$or = [
@@ -31,9 +31,9 @@ exports.getCategories = async (req, res) => {
       .limit(parseInt(limit));
 
     const categoriesWithCount = await Promise.all(categories.map(async (cat) => {
-      const count = await Product.countDocuments({ 
+      const count = await Product.countDocuments({
         category: cat.name,
-        deletedAt: null 
+        deletedAt: null
       });
       return {
         ...cat.toObject(),
@@ -86,9 +86,9 @@ exports.getCategory = async (req, res) => {
       });
     }
 
-    const productCount = await Product.countDocuments({ 
+    const productCount = await Product.countDocuments({
       category: category.name,
-      deletedAt: null 
+      deletedAt: null
     });
 
     res.json({
@@ -268,9 +268,9 @@ exports.deleteCategory = async (req, res) => {
       });
     }
 
-    const productCount = await Product.countDocuments({ 
+    const productCount = await Product.countDocuments({
       category: category.name,
-      deletedAt: null 
+      deletedAt: null
     });
 
     if (productCount > 0) {
@@ -352,10 +352,10 @@ exports.getPublicCategories = async (req, res) => {
     .sort({ displayOrder: 1, name: 1 });
 
     const categoriesWithCount = await Promise.all(categories.map(async (cat) => {
-      const count = await Product.countDocuments({ 
+      const count = await Product.countDocuments({
         category: cat.name,
-        status: 'ACTIVE',
-        deletedAt: null 
+        status: 'PUBLISHED',
+        deletedAt: null
       });
       return {
         ...cat.toObject(),

@@ -406,11 +406,9 @@ const About = () => {
                       {language === 'mr' ? 'कार्यवेळ' : 'Business Hours'}
                     </p>
                     <p className="text-sm text-text-muted">
-                      Mon-Sat: 9 AM – 8 PM
+                      Mon-Sun: 9 AM – 10 PM
                     </p>
-                    <p className="text-sm text-text-muted">
-                      Sunday: {language === 'mr' ? 'सुट्टी' : 'Holiday'}
-                    </p>
+                    
                   </div>
                 </div>
               </div>

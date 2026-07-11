@@ -1,8 +1,8 @@
 // frontend/src/pages/admin/Categories.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, Search, ChevronLeft, ChevronRight, X, Upload } from 'lucide-react';
+import { Plus, Edit, Trash2, Search, ChevronLeft, ChevronRight, X, Upload, Loader, Image as ImageIcon } from 'lucide-react';
 import categoryService from '../../services/categoryService';
 import Button from '../../components/ui/Button';
 import toast from 'react-hot-toast';
@@ -14,6 +14,8 @@ const AdminCategories = () => {
   const [pagination, setPagination] = useState({ page: 1, total: 0, pages: 0, limit: 10 });
   const [showModal, setShowModal] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const fileInputRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     nameMr: '',
@@ -32,7 +34,7 @@ const AdminCategories = () => {
     setLoading(true);
     try {
       const params = { page: pagination.page, limit: pagination.limit, search: searchTerm };
-      const data = await categoryService.getCategories(params);
+      const data = await categoryService.getAdminCategories(params);
       setCategories(data.categories || []);
       setPagination(data.pagination || { page: 1, total: 0, pages: 0, limit: 10 });
     } catch (error) {
@@ -40,6 +42,49 @@ const AdminCategories = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    try {
+      const token = localStorage.getItem('token');
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch(`${API_URL}/admin/upload/category`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!data.success) throw data;
+
+      setFormData((prev) => ({
+        ...prev,
+        image: {
+          url: data.data.imageUrl,
+          publicId: data.data.publicId,
+          alt: prev.name || 'Category image',
+        },
+      }));
+      toast.success('Category image uploaded successfully');
+    } catch (error) {
+      toast.error(error.message || 'Failed to upload image');
+    } finally {
+      setUploadingImage(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
+
+  const removeImage = () => {
+    setFormData((prev) => ({ ...prev, image: '' }));
   };
 
   const handleSubmit = async (e) => {
@@ -95,7 +140,7 @@ const AdminCategories = () => {
       nameMr: category.nameMr || '',
       description: category.description || '',
       descriptionMr: category.descriptionMr || '',
-      image: category.image?.url || '',
+      image: category.image || '',
       status: category.status || 'ACTIVE',
       displayOrder: category.displayOrder || 0,
     });
@@ -327,15 +372,61 @@ const AdminCategories = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-text-dark mb-1">
-                    Image URL
+                    Category Image
                   </label>
-                  <input
-                    type="text"
-                    value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    className="w-full px-4 py-2 rounded-xl bg-background-cream border border-secondary-gold/20 focus:border-primary-maroon outline-none transition-colors"
-                    placeholder="https://example.com/image.jpg"
-                  />
+                  {formData.image ? (
+                    <div className="space-y-3">
+                      <div className="relative inline-block">
+                        <img
+                          src={typeof formData.image === 'string' ? formData.image : formData.image.url}
+                          alt="Category preview"
+                          className="w-32 h-32 object-cover rounded-xl border border-secondary-gold/20"
+                        />
+                        <button
+                          type="button"
+                          onClick={removeImage}
+                          className="absolute -top-2 -right-2 p-1.5 rounded-full bg-red-500 text-white shadow-lg"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                      <div className="text-sm text-text-muted">Image uploaded successfully. You can replace it anytime.</div>
+                    </div>
+                  ) : (
+                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-secondary-gold/30 rounded-xl cursor-pointer hover:border-primary-maroon transition-colors bg-background-cream/30">
+                      {uploadingImage ? (
+                        <div className="flex flex-col items-center">
+                          <Loader className="w-8 h-8 text-primary-maroon animate-spin" />
+                          <p className="text-sm text-text-muted mt-2">Uploading...</p>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center">
+                          <Upload className="w-8 h-8 text-text-muted" />
+                          <p className="text-sm text-text-muted mt-2">
+                            <span className="font-medium">Click to upload</span> category image
+                          </p>
+                          <p className="text-xs text-text-muted">PNG, JPG, WebP (Max 5MB)</p>
+                        </div>
+                      )}
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        className="hidden"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                      />
+                    </label>
+                  )}
+                  {formData.image && (
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="mt-3 inline-flex items-center gap-2 text-sm text-primary-maroon hover:text-secondary-gold transition-colors"
+                    >
+                      <Upload className="w-4 h-4" />
+                      Replace image
+                    </button>
+                  )}
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>

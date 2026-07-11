@@ -1058,35 +1058,71 @@ exports.deleteHeroBanner = async (req, res) => {
 // ============================================
 // REPORTS
 // ============================================
-
 // @desc    Get sales report
 // @route   GET /api/admin/reports/sales
 // @access  Private (Admin)
 exports.getSalesReport = async (req, res) => {
     try {
-        const { period = 'monthly' } = req.query;
+        const { period = 'monthly', startDate, endDate } = req.query;
+
+        const match = { deletedAt: null };
+
+        if (startDate || endDate) {
+            match.createdAt = {};
+            if (startDate) match.createdAt.$gte = new Date(startDate);
+            if (endDate) {
+                const end = new Date(endDate);
+                end.setHours(23, 59, 59, 999);
+                match.createdAt.$lte = end;
+            }
+        }
+
+        let groupId;
+        if (period === 'daily') {
+            groupId = {
+                year: { $year: '$createdAt' },
+                month: { $month: '$createdAt' },
+                day: { $dayOfMonth: '$createdAt' },
+            };
+        } else if (period === 'weekly') {
+            groupId = {
+                year: { $isoWeekYear: '$createdAt' },
+                week: { $isoWeek: '$createdAt' },
+            };
+        } else {
+            groupId = {
+                year: { $year: '$createdAt' },
+                month: { $month: '$createdAt' },
+            };
+        }
 
         const report = await Order.aggregate([
-            { $match: { deletedAt: null } },
+            { $match: match },
             {
                 $group: {
-                    _id: {
-                        year: { $year: '$createdAt' },
-                        month: { $month: '$createdAt' }
-                    },
+                    _id: groupId,
                     revenue: { $sum: '$total' },
-                    orders: { $sum: 1 }
-                }
+                    orders: { $sum: 1 },
+                },
             },
-            { $sort: { '_id.year': -1, '_id.month': -1 } },
-            { $limit: 12 }
+            { $sort: { '_id.year': -1, '_id.month': -1, '_id.day': -1, '_id.week': -1 } },
+            { $limit: 30 },
         ]);
+
+        const totalRevenue = report.reduce((sum, r) => sum + r.revenue, 0);
+        const totalOrders = report.reduce((sum, r) => sum + r.orders, 0);
+        const avgOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
 
         res.json({
             success: true,
             data: {
-                report
-            }
+                report: report.reverse(),
+                summary: {
+                    totalRevenue,
+                    totalOrders,
+                    avgOrderValue,
+                },
+            },
         });
     } catch (error) {
         console.error('Sales report error:', error);
@@ -1096,7 +1132,6 @@ exports.getSalesReport = async (req, res) => {
         });
     }
 };
-
 // @desc    Get product report
 // @route   GET /api/admin/reports/products
 // @access  Private (Admin)
@@ -1110,8 +1145,6 @@ exports.getProductReport = async (req, res) => {
                     totalRevenue: { $sum: '$totalPrice' }
                 }
             },
-            { $sort: { totalSold: -1 } },
-            { $limit: 10 },
             {
                 $lookup: {
                     from: 'products',
@@ -1120,7 +1153,10 @@ exports.getProductReport = async (req, res) => {
                     as: 'product'
                 }
             },
-            { $unwind: { path: '$product', preserveNullAndEmptyArrays: true } }
+            { $unwind: '$product' },
+            { $match: { 'product.deletedAt': null } },
+            { $sort: { totalSold: -1 } },
+            { $limit: 10 }
         ]);
 
         res.json({
@@ -1137,11 +1173,6 @@ exports.getProductReport = async (req, res) => {
         });
     }
 };
-
-// ============================================
-// ANALYTICS
-// ============================================
-
 // @desc    Get analytics
 // @route   GET /api/admin/analytics
 // @access  Private (Admin)
@@ -1149,25 +1180,66 @@ exports.getAnalytics = async (req, res) => {
     try {
         const { period = 'month' } = req.query;
 
+        const now = new Date();
+        let startDate = new Date(now);
+        let groupId;
+
+        if (period === 'week') {
+            startDate.setDate(startDate.getDate() - 7 * 12);
+            groupId = {
+                year: { $isoWeekYear: '$createdAt' },
+                week: { $isoWeek: '$createdAt' },
+            };
+        } else if (period === 'year') {
+            startDate.setFullYear(startDate.getFullYear() - 5);
+            groupId = { year: { $year: '$createdAt' } };
+        } else {
+            startDate.setMonth(startDate.getMonth() - 12);
+            groupId = {
+                year: { $year: '$createdAt' },
+                month: { $month: '$createdAt' },
+            };
+        }
+
         const revenueTrend = await Order.aggregate([
-            { $match: { deletedAt: null } },
+            { $match: { deletedAt: null, createdAt: { $gte: startDate } } },
             {
                 $group: {
-                    _id: {
-                        year: { $year: '$createdAt' },
-                        month: { $month: '$createdAt' }
-                    },
+                    _id: groupId,
                     revenue: { $sum: '$total' },
                     orders: { $sum: 1 }
                 }
             },
-            { $sort: { '_id.year': 1, '_id.month': 1 } }
+            { $sort: { '_id.year': 1, '_id.month': 1, '_id.week': 1 } }
+        ]);
+
+        const topCategories = await OrderItem.aggregate([
+            {
+                $lookup: {
+                    from: 'products',
+                    localField: 'productId',
+                    foreignField: '_id',
+                    as: 'product'
+                }
+            },
+            { $unwind: '$product' },
+            { $match: { 'product.deletedAt': null } },
+            {
+                $group: {
+                    _id: '$product.category',
+                    totalSold: { $sum: '$quantity' },
+                    totalRevenue: { $sum: '$totalPrice' }
+                }
+            },
+            { $sort: { totalRevenue: -1 } },
+            { $limit: 10 }
         ]);
 
         res.json({
             success: true,
             data: {
                 revenueTrend,
+                topCategories,
                 period
             }
         });

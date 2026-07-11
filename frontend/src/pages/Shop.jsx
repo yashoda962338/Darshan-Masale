@@ -22,6 +22,20 @@ const Shop = () => {
   });
 
   useEffect(() => {
+    const categoryFromUrl = searchParams.get('category') || '';
+    setFilters(prev => {
+      if (prev.category === categoryFromUrl && prev.page === 1) {
+        return prev;
+      }
+      return {
+        ...prev,
+        category: categoryFromUrl,
+        page: 1,
+      };
+    });
+  }, [searchParams]);
+
+  useEffect(() => {
     fetchProducts();
   }, [filters]);
 

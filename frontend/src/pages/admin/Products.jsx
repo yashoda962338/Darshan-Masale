@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Plus, Search, Edit, Trash2, Eye, 
-  Filter, ChevronLeft, ChevronRight 
+import {
+  Plus, Search, Edit, Trash2, Eye,
+  Filter, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import adminService from '../../services/adminService';
 import Button from '../../components/ui/Button';
@@ -54,7 +54,7 @@ const AdminProducts = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
-    
+
     try {
       await adminService.deleteProduct(id);
       toast.success('Product deleted successfully');
@@ -169,11 +169,11 @@ const AdminProducts = () => {
                 </thead>
                 <tbody className="divide-y divide-secondary-gold/10">
                   {products.map((product) => {
-                    const totalStock = product.variants?.reduce((sum, v) => sum + v.availableStock, 0) || 0;
-                    const lowestPrice = product.variants?.length > 0 
+                    const totalStock = product.variants?.reduce((sum, v) => sum + v.stock, 0) || 0;
+                    const lowestPrice = product.variants?.length > 0
                       ? Math.min(...product.variants.map(v => v.sellingPrice))
                       : 0;
-                    
+
                     return (
                       <tr key={product._id} className="hover:bg-background-cream/50 transition-colors">
                         <td className="px-6 py-4">
@@ -192,7 +192,7 @@ const AdminProducts = () => {
                           </div>
                         </td>
                         <td className="px-6 py-4 text-sm text-text-muted">
-                          {product.categoryId?.name || 'Uncategorized'}
+                          {product.category || 'Uncategorized'}
                         </td>
                         <td className="px-6 py-4 text-sm font-medium text-primary-maroon">
                           {lowestPrice > 0 ? `₹${lowestPrice}` : 'N/A'}

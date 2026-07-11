@@ -132,8 +132,8 @@ const Contact = () => {
                   <Clock className="w-5 h-5 text-secondary-gold flex-shrink-0 mt-1" />
                   <div>
                     <h4 className="font-heading font-semibold text-primary-maroon">Working Hours</h4>
-                    <p className="text-sm text-text-muted">Mon-Sat: 9:00 AM - 9:00 PM</p>
-                    <p className="text-sm text-text-muted">Sunday: Closed</p>
+                    <p className="text-sm text-text-muted">Mon-Sat: 9:00 AM - 10:00 PM</p>
+                    
                   </div>
                 </div>
               </div>
