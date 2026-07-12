@@ -135,9 +135,9 @@ const AddressFormModal = ({
 
         <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-5">
 
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
 
-                <div className="flex justify-between items-center border-b px-6 py-5">
+                <div className="flex justify-between items-center border-b px-6 py-5 sticky top-0 bg-white z-10">
 
                     <h2 className="text-2xl font-bold text-primary-maroon">
 
