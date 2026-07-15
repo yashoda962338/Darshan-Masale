@@ -1,7 +1,7 @@
-// 🔵 FRONTEND: src/pages/auth/Login.jsx - WITH BACK BUTTON
+// 🔵 FRONTEND: src/pages/auth/Login.jsx - WITH BACK BUTTON + RETURN URL SUPPORT
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Phone, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
@@ -10,6 +10,8 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const returnUrl = searchParams.get('returnUrl');
   const { login, isAuthenticated, loading } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [loginType, setLoginType] = useState('email');
@@ -19,13 +21,13 @@ const Login = () => {
     password: '',
   });
 
-  // ✅ If already authenticated, redirect to home
+  // ✅ If already authenticated, redirect to returnUrl (or home)
   useEffect(() => {
     if (!loading && isAuthenticated) {
-      console.log('✅ Already authenticated, redirecting to home');
-      navigate('/');
+      console.log('✅ Already authenticated, redirecting to', returnUrl || '/');
+      navigate(returnUrl || '/');
     }
-  }, [isAuthenticated, loading, navigate]);
+  }, [isAuthenticated, loading, navigate, returnUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +46,7 @@ const Login = () => {
 
     if (result.success) {
       toast.success('Login successful!');
-      navigate('/');
+      navigate(returnUrl || '/');
     } else {
       toast.error(result.error || 'Invalid credentials');
     }

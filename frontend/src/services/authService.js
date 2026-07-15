@@ -1,5 +1,6 @@
 // 🔵 FRONTEND: src/services/authService.js
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
@@ -22,13 +23,43 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
+// Prevents multiple redirect/toast spam if several requests fail at once
+let authRedirectInProgress = false;
+
 // Handle response errors
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response?.status === 401) {
+        // Requests to these endpoints are login/register ATTEMPTS themselves.
+        // A wrong password or duplicate email is a normal 401/400 response,
+        // NOT an expired session — so it must NEVER trigger a redirect/reload.
+        const isAuthAttempt =
+            error.config?.url?.includes('/auth/login') ||
+            error.config?.url?.includes('/auth/register') ||
+            error.config?.url?.includes('/auth/verify-registration-otp') ||
+            error.config?.url?.includes('/auth/resend-otp') ||
+            error.config?.url?.includes('/auth/forgot-password') ||
+            error.config?.url?.includes('/auth/verify-forgot-password-otp') ||
+            error.config?.url?.includes('/auth/reset-password');
+
+        if (error.response?.status === 401 && !isAuthAttempt) {
+            const isOnLoginPage = window.location.pathname.startsWith('/auth/login');
+
             localStorage.removeItem('token');
-            window.location.href = '/auth/login';
+
+            if (!isOnLoginPage && !authRedirectInProgress) {
+                authRedirectInProgress = true;
+
+                toast.error('Please login to continue', { id: 'auth-required' });
+
+                const currentPath = window.location.pathname + window.location.search;
+                const returnUrl = encodeURIComponent(currentPath);
+
+                setTimeout(() => {
+                    window.location.href = `/auth/login?returnUrl=${returnUrl}`;
+                    authRedirectInProgress = false;
+                }, 600);
+            }
         }
         return Promise.reject(error);
     }

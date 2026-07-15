@@ -1,4 +1,4 @@
-// frontend/src/pages/auth/Register.jsx - UPDATED (Remove Firebase Phone OTP)
+// frontend/src/pages/auth/Register.jsx - UPDATED (Phone now required, better error handling)
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import toast from 'react-hot-toast';
-// ❌ REMOVE: import PhoneOTPInput from '../../components/auth/PhoneOTPInput';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match');
       return;
@@ -32,6 +31,11 @@ const Register = () => {
 
     if (formData.password.length < 6) {
       toast.error('Password must be at least 6 characters');
+      return;
+    }
+
+    if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+      toast.error('Please enter a valid 10-digit mobile number');
       return;
     }
 
@@ -46,11 +50,12 @@ const Register = () => {
         password: formData.password,
       });
       toast.success('Registration successful! Please check your email for OTP.');
-      navigate('/auth/verify-registration-otp', { 
-        state: { email: formData.email } 
+      navigate('/auth/verify-registration-otp', {
+        state: { email: formData.email }
       });
     } catch (error) {
-      toast.error('Registration failed');
+      const message = error?.response?.data?.message || 'Registration failed. Please try again.';
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -125,12 +130,15 @@ const Register = () => {
 
               <div>
                 <label className="block text-sm font-medium text-text-dark mb-1.5">
-                  Mobile Number (Optional)
+                  Mobile Number
                 </label>
                 <input
                   type="tel"
+                  required
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                  pattern="[6-9]\d{9}"
+                  title="Enter a valid 10-digit Indian mobile number"
                   className="w-full px-4 py-3 rounded-xl bg-background-cream border border-secondary-gold/20 focus:border-primary-maroon outline-none transition-colors"
                   placeholder="9876543210"
                 />

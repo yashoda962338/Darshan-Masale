@@ -18,11 +18,12 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
   },
-  phone: {
-    type: String,
-    unique: true,
-    sparse: true,
-  },
+ phone: {
+  type: String,
+  required: true,
+  unique: true,
+  trim: true,
+},
   passwordHash: {
     type: String,
     required: true,

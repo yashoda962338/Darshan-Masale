@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
     const { firstName, lastName, email, phone, password } = req.body;
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !password) {
+    if (!firstName || !lastName || !email || !phone || !password) {
       return res.status(400).json({
         success: false,
         message: 'Please provide all required fields',
@@ -500,7 +500,7 @@ exports.resetPassword = async (req, res) => {
 };
 
 // ============================================
-// LOGIN (No changes)
+// LOGIN
 // ============================================
 
 // @desc    Login user
@@ -517,14 +517,14 @@ exports.login = async (req, res) => {
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials',
+        message: 'No account found with these details. Please register first.',
       });
     }
 
     if (user.status !== 'ACTIVE') {
       return res.status(401).json({
         success: false,
-        message: 'Account is not active. Please verify your email.',
+        message: 'Your account is not verified yet. Please check your email for the OTP.',
       });
     }
 
@@ -532,7 +532,7 @@ exports.login = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials',
+        message: 'Incorrect password. Please try again.',
       });
     }
 
@@ -561,7 +561,7 @@ exports.login = async (req, res) => {
 };
 
 // ============================================
-// PROFILE (No changes)
+// PROFILE
 // ============================================
 
 // @desc    Get user profile

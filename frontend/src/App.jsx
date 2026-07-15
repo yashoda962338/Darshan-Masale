@@ -1,4 +1,4 @@
-// 🔵 FRONTEND: src/App.jsx - FIXED (Remove AuthProvider & WishlistProvider)
+// 🔵 FRONTEND: src/App.jsx - FIXED (Cart/Wishlist/Checkout require login)
 console.log('🔍 localStorage token:', localStorage.getItem('token'));
 console.log('🔍 localStorage role:', localStorage.getItem('role'));
 
@@ -10,10 +10,8 @@ import MainLayout from './layouts/MainLayout'
 import CustomerLayout from './layouts/CustomerLayout'
 import AdminLayout from './layouts/AdminLayout'
 import Loader from './components/common/Loader'
-// ❌ REMOVE THESE - Already in main.jsx
-// import { AuthProvider } from './context/AuthContext'
-// import { WishlistProvider } from './context/WishlistContext'
 import RoleProtectedRoute from './components/common/RoleProtectedRoute'
+import ProtectedRoute from './routes/ProtectedRoute'
 
 // ============================================
 // PUBLIC PAGES
@@ -93,8 +91,6 @@ function App() {
     return <Loader />
   }
 
-  // ✅ REMOVED AuthProvider and WishlistProvider from here
-  // They are already in main.jsx
   return (
     <>
       <Toaster
@@ -108,12 +104,12 @@ function App() {
           },
         }}
       />
-      
+
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          
+
           {/* ============================================ */}
-          {/* PUBLIC ROUTES - MainLayout */}
+          {/* PUBLIC ROUTES - MainLayout (browsing only, no operations) */}
           {/* ============================================ */}
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
@@ -124,14 +120,50 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="wishlist" element={<Wishlist />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="checkout" element={<Checkout />} />
-            <Route path="/payment-success" element={<PaymentSuccess />} />
-            <Route path="/payment-failed" element={<PaymentFailed />}/>
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="terms" element={<Terms />} />
 
+            {/* ---- Require login: any real "operation" happens here ---- */}
+            <Route
+              path="wishlist"
+              element={
+                <ProtectedRoute>
+                  <Wishlist />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="cart"
+              element={
+                <ProtectedRoute>
+                  <Cart />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="payment-success"
+              element={
+                <ProtectedRoute>
+                  <PaymentSuccess />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="payment-failed"
+              element={
+                <ProtectedRoute>
+                  <PaymentFailed />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           {/* ============================================ */}
@@ -147,8 +179,8 @@ function App() {
           {/* ============================================ */}
           {/* CUSTOMER ROUTES - Protected */}
           {/* ============================================ */}
-          <Route 
-            path="customer" 
+          <Route
+            path="customer"
             element={
               <RoleProtectedRoute allowedRoles={['CUSTOMER']}>
                 <CustomerLayout />
@@ -167,8 +199,8 @@ function App() {
           {/* ============================================ */}
           {/* ADMIN ROUTES - Protected */}
           {/* ============================================ */}
-          <Route 
-            path="admin" 
+          <Route
+            path="admin"
             element={
               <RoleProtectedRoute allowedRoles={['SUPER_ADMIN', 'ADMIN', 'MANAGER', 'SUPPORT']}>
                 <AdminLayout />
@@ -177,35 +209,35 @@ function App() {
           >
             {/* Dashboard */}
             <Route path="dashboard" element={<AdminDashboard />} />
-            
+
             {/* Products */}
             <Route path="products" element={<AdminProducts />} />
             <Route path="products/add" element={<AdminAddProduct />} />
             <Route path="products/edit/:id" element={<AdminEditProduct />} />
-            
+
             {/* Categories */}
             <Route path="categories" element={<AdminCategories />} />
-            
+
             {/* Orders */}
             <Route path="orders" element={<AdminOrders />} />
             <Route path="orders/:id" element={<AdminOrderDetails />} />
-            
+
             {/* Customers */}
             <Route path="customers" element={<AdminCustomers />} />
             <Route path="customers/:id" element={<AdminCustomerDetails />} />
-            
+
             {/* Gallery & Banners */}
             <Route path="gallery" element={<AdminGallery />} />
             <Route path="banners" element={<AdminHeroBanners />} />
-            
+
             {/* Reviews & Coupons */}
             <Route path="reviews" element={<AdminReviews />} />
             <Route path="coupons" element={<AdminCoupons />} />
-            
+
             {/* Reports & Analytics */}
             <Route path="reports" element={<AdminReports />} />
             <Route path="analytics" element={<AdminAnalytics />} />
-            
+
             {/* Settings & Users */}
             <Route path="settings" element={<AdminSettings />} />
             <Route path="users" element={<AdminUsers />} />
@@ -216,7 +248,7 @@ function App() {
           {/* ============================================ */}
           <Route path="/403" element={<Forbidden />} />
           <Route path="*" element={<NotFound />} />
-          
+
         </Routes>
       </AnimatePresence>
     </>

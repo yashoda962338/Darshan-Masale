@@ -190,15 +190,16 @@ const Checkout = () => {
 
     const handlePlaceOrder = async () => {
 
+        // ✅ Client-side check FIRST — never even attempt the API call without an address
+        if (!selectedAddress?._id) {
+
+            toast.error("Please add and select a delivery address before proceeding to payment.");
+
+            return;
+
+        }
+
         try {
-
-            if (!selectedAddress?._id) {
-
-                toast.error("Please Select Delivery Address");
-
-                return;
-
-            }
 
             setPlacingOrder(true);
 
@@ -266,7 +267,21 @@ const Checkout = () => {
 
             console.log(error.response?.data);
 
-            toast.error("Payment Error");
+            const backendMessage = error.response?.data?.message;
+
+            if (backendMessage && backendMessage.toLowerCase().includes("address")) {
+
+                toast.error("Please add and select a delivery address before proceeding to payment.");
+
+            } else if (backendMessage) {
+
+                toast.error(backendMessage);
+
+            } else {
+
+                toast.error("Something went wrong while placing your order. Please try again.");
+
+            }
 
         }
 
@@ -302,6 +317,20 @@ const Checkout = () => {
                             selectedAddress={selectedAddress}
                             setSelectedAddress={setSelectedAddress}
                         />
+
+                        {/* ✅ Inline reminder if no address is selected yet */}
+
+                        {
+                            !selectedAddress?._id && (
+
+                                <div className="bg-amber-50 border border-amber-300 text-amber-800 rounded-xl px-4 py-3 text-sm font-medium">
+
+                                    ⚠️ Please add and select a delivery address above before proceeding to payment.
+
+                                </div>
+
+                            )
+                        }
 
                         {/* ORDER ITEMS */}
 
@@ -817,9 +846,11 @@ const Checkout = () => {
 
                                 onClick={handlePlaceOrder}
 
-                                disabled={placingOrder}
+                                disabled={placingOrder || !selectedAddress?._id}
 
-                                className="mt-8 w-full bg-primary-maroon text-white py-4 rounded-xl hover:bg-primary-maroon/90 disabled:opacity-50"
+                                title={!selectedAddress?._id ? "Please select a delivery address first" : ""}
+
+                                className="mt-8 w-full bg-primary-maroon text-white py-4 rounded-xl hover:bg-primary-maroon/90 disabled:opacity-50 disabled:cursor-not-allowed"
 
                             >
 
@@ -833,7 +864,15 @@ const Checkout = () => {
 
                                         :
 
-                                        "Place Order"
+                                        !selectedAddress?._id
+
+                                            ?
+
+                                            "Select Address To Continue"
+
+                                            :
+
+                                            "Place Order"
 
                                 }
 
