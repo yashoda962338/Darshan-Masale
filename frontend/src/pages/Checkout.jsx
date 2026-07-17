@@ -24,9 +24,13 @@ const Checkout = () => {
     // STATES
     //---------------------------------------
 
-    const [paymentMethod, setPaymentMethod] = useState("COD");
+    const [paymentMethod, setPaymentMethod] = useState("CASHFREE");
     const [placingOrder, setPlacingOrder] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState(null);
+
+    // 🔶 TEMPORARY: COD disabled — no delivery partner available right now.
+    // Flip this to true once a delivery partner is available again.
+    const isCODAvailable = false;
 
     // Coupon
     const [couponCode, setCouponCode] = useState("");
@@ -478,21 +482,36 @@ const Checkout = () => {
 
                             </h2>
 
-                            <label className="flex items-center gap-3 mb-4 cursor-pointer">
+                            <label className={`flex items-center gap-3 mb-2 ${isCODAvailable ? "cursor-pointer" : "cursor-not-allowed opacity-50"}`}>
 
                                 <input
 
                                     type="radio"
 
+                                    disabled={!isCODAvailable}
+
                                     checked={paymentMethod === "COD"}
 
-                                    onChange={() => setPaymentMethod("COD")}
+                                    onChange={() => isCODAvailable && setPaymentMethod("COD")}
 
                                 />
 
                                 Cash On Delivery
 
                             </label>
+
+                            {
+                                !isCODAvailable && (
+
+                                    <p className="text-sm text-amber-700 bg-amber-50 border border-amber-300 rounded-lg px-3 py-2 mb-4">
+
+                                        The Cash on Delivery (COD) option is not available right now. You can proceed with Cashfree payment.
+
+                                    </p>
+
+                                )
+                            }
+
                             <label className="flex items-center gap-3 mb-4 cursor-pointer">
 
                                 <input
